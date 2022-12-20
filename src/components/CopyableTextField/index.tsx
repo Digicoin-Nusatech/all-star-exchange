@@ -47,34 +47,43 @@ class CopyableTextField extends React.Component<CopyableTextFieldProps> {
     public render() {
         const { value, className, classNameInput, disabled, fieldId, copyButtonText, label } = this.props;
         const doCopy = () => copy(fieldId);
-        const cx = classnames('cr-copyable-text-field', className);
+        const cx = classnames('input-copy-wrapper', className);
 
         return (
             <div className={cx}>
-                <InputGroup>
-                    <CustomInput
-                        id={String(fieldId)}
-                        readOnly={true}
-                        inputValue={value}
-                        handleClick={doCopy}
-                        type="text"
-                        isDisabled={disabled}
-                        label={label || ''}
-                        defaultLabel={label || ''}
-                        placeholder={label || ''}
-                        classNameInput={`cr-copyable-text-field__input copy-text ` + classNameInput}
-                    />
-                    <InputGroup.Append>
-                        <Button
-                            onClick={doCopy}
-                            disabled={disabled}
-                            size="lg"
-                            variant="primary"
-                            className="cr-copyable-text-field__button">
+                <CustomInput
+                    id={String(fieldId)}
+                    readOnly={true}
+                    inputValue={value}
+                    handleClick={doCopy}
+                    type="text"
+                    isDisabled={disabled}
+                    label={label || ''}
+                    defaultLabel={label || ''}
+                    placeholder={label || ''}
+                    classNameInput={`` + classNameInput}
+                />
+                {/* <InputGroup.Append className="col-2">
+                        <Button onClick={doCopy} disabled={disabled} size="sm" variant="white">
                             <CopyButton className="copy-icon" />
                         </Button>
-                    </InputGroup.Append>
-                </InputGroup>
+                    </InputGroup.Append> */}
+
+                {/* <div onClick={doCopy} className="input-group">
+                    <input
+                        type="text"
+                        disabled={disabled}
+                        className="form-control"
+                        readOnly={true}
+                        onClick={doCopy}
+                        value={value}
+                    />
+                    <div className="input-group-append">
+                        <span className="input-group-text" id="basic-addon2">
+                            copy
+                        </span>
+                    </div>
+                </div> */}
             </div>
         );
     }

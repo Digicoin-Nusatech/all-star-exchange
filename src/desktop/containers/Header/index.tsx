@@ -62,6 +62,8 @@ const authHeader = [
 ];
 const tradingHeader = ['/trading'];
 
+const dontShowAuthButton = ['/signin', '/signup'];
+
 type Props = ReduxProps & DispatchProps & IntlProps & LocationProps & OwnProps;
 
 class Head extends React.Component<Props, HeaderState> {
@@ -77,6 +79,8 @@ class Head extends React.Component<Props, HeaderState> {
     public render() {
         const thisAuthHeader = authHeader.some((r) => location.pathname.includes(r)) && location.pathname !== '/';
         const thisTradingHeader = tradingHeader.some((r) => location.pathname.includes(r));
+
+        const thisAuthHeaderButton = dontShowAuthButton.some((r) => location.pathname.includes(r));
 
         const { showLanguage, showProfileDropdown } = this.state;
         const { isLoggedIn } = this.props;
@@ -332,8 +336,7 @@ class Head extends React.Component<Props, HeaderState> {
                                     ''
                                 )}
                             </li>
-
-                            {isLoggedIn ? (
+                            {isLoggedIn && (
                                 // Profile Dropdown
                                 <li className="nav-item dropdown avatar px-3">
                                     <div
@@ -378,9 +381,9 @@ class Head extends React.Component<Props, HeaderState> {
                                         ''
                                     )}
                                 </li>
-                            ) : (
-                                // Sign In and Sign Up
+                            )}
 
+                            {!thisAuthHeaderButton && !isLoggedIn && (
                                 <React.Fragment>
                                     <li className="nav-item dropdown avatar px-3">
                                         <Link to={'/signin'} className="text-primary text-sm font-bold mr-3">
@@ -394,21 +397,6 @@ class Head extends React.Component<Props, HeaderState> {
                                     </li>
                                 </React.Fragment>
                             )}
-
-                            {!thisAuthHeader ? (
-                                <React.Fragment>
-                                    <li className="nav-item dropdown avatar px-3">
-                                        <Link to={'/signin'} className="text-primary text-sm font-bold mr-3">
-                                            Login
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item dropdown avatar px-3">
-                                        <Link to={'/signup'} className="btn btn-primary">
-                                            Register
-                                        </Link>
-                                    </li>
-                                </React.Fragment>
-                            ) : null}
                         </ul>
                     </div>
                 </nav>

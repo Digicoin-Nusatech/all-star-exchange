@@ -94,25 +94,19 @@ export const TwoFaActivationScreen: React.FC = () => {
                                         </div>
                                     </div> */}
 
-                                    <div className="row align-items-center no-gutters mt-4">
-                                        <div className="col-3">
-                                            <label className="text-dark fw-bold mb-0">MVA CODE</label>
-                                        </div>
-                                        <div className="col-9">
-                                            <div className="card b-form px-3 py-2 rounded-lg">
-                                                <div className="row">
-                                                    <div className="col-12" onClick={doCopy}>
-                                                        {secret && (
-                                                            <CopyableTextField
-                                                                className="copy-mva col-2 text-right"
-                                                                fieldId="referal-id"
-                                                                value={secret}
-                                                            />
-                                                        )}
-                                                    </div>
-                                                </div>
+                                    <div className="col-3">
+                                        <label className="text-dark fw-bold mb-0">MVA CODE</label>
+                                    </div>
+                                    <div className="col-9">
+                                        {secret && (
+                                            <div onClick={doCopy}>
+                                                <CopyableTextField
+                                                    className="copy-mva"
+                                                    fieldId="referal-id"
+                                                    value={secret}
+                                                />
                                             </div>
-                                        </div>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="row align-items-center no-gutters mt-4">
