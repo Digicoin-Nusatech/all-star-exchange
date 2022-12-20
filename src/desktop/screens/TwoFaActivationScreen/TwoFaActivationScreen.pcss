@@ -1,68 +1,9 @@
-.two-fa-activation-screen {
-    min-height: 100vh;
-    &.content-wrapper {
-        padding-top: 64px;
-        .back-link {
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 30px;
-            color: var(--primary-text-color);
-            text-decoration: none;
-            .__text {
-                margin-left: 2rem;
-            }
-        }
-        .qr-code {
-            margin-right: 2rem;
-            padding: 6px;
-            background: var(--light-background-color);
-            .wrap {
-                background: var(--light-background-color);
-                padding: 10px;
-                width: 150px;
-                height: 150px;
-            }
-        }
-        .input-label {
-            width: 120px;
-            padding-right: 24px;
-            background: var(--text-gradient-color);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 24px;
-            letter-spacing: 0.04em;
-        }
-        .input-classname {
-            width: 380px;
-        }
-        .twofa-button {
-            width: 380px;
-        }
+footer {
+    display: none;
+}
 
-        .form-control {
-            height: 48px;
-            border-radius: 6px;
-            padding: 12px 16px 12px 16px;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 15px;
-            color: var(--text-grey-color);
-            background: var(--main-background-color);
-            border: 1px solid var(--border-color);
-            &:focus,
-            &:focus-visible {
-                border-color: var(--border-color);
-                outline: 0;
-                box-shadow: 0 0 0 0;
-            }
-        }
-        .copy-icon {
-            position: absolute;
-            top: 14px;
-            right: 10px;
-            cursor: pointer;
-        }
-    }
+.input-group {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
 }

@@ -1,30 +1,36 @@
-.container-phone {
-    .input-phone {
-        width: 100%;
-        height: 48px;
-        padding-left: 52px;
-        margin-top: 8px;
-        background: var(--main-background-color);
-        border-color: var(--input-border-color);
+.login-content {
+    .right,
+    .left {
+        position: absolute;
     }
 
-    .button-phone {
-        background: transparent;
-        border: 0;
-        .selected-flag:hover {
-            background: transparent !important;
-        }
-        .selected-flag {
-            background: transparent !important;
-            padding-left: 1.5rem;
-        }
-
-        &.open {
-            background: transparent;
-        }
+    .left {
+        bottom: -80px;
+        left: 200px;
     }
 
-    .react-tel-input .flag-dropdown.open {
-        background: transparent;
+    .right {
+        top: 100px;
+        right: 200px;
+    }
+
+    .login-form {
+        .form-control {
+            border-radius: 8px;
+            background-color: var(--white-color);
+            border: 1px solid var(--rgb-form-border) !important;
+            box-shadow: none !important;
+        }
+
+        .btn-login {
+            padding: 6px 20px !important;
+            width: 100%;
+        }
+
+        .custom-input {
+            label {
+                display: none;
+            }
+        }
     }
 }

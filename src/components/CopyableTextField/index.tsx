@@ -62,7 +62,7 @@ class CopyableTextField extends React.Component<CopyableTextFieldProps> {
                         label={label || ''}
                         defaultLabel={label || ''}
                         placeholder={label || ''}
-                        classNameInput={`cr-copyable-text-field__input ` + classNameInput}
+                        classNameInput={`cr-copyable-text-field__input copy-text ` + classNameInput}
                     />
                     <InputGroup.Append>
                         <Button

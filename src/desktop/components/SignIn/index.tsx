@@ -10,6 +10,9 @@ import { EMAIL_REGEX } from '../../../helpers';
 import { GeetestCaptchaResponse } from '../../../modules';
 import { selectMobileDeviceState } from '../../../modules/public/globalSettings';
 
+import patternDots from '../../../assets/img/pattern-dots.png';
+import heroSignin from '../../../assets/img/hero-sign-in.png';
+
 export interface SignInProps {
     labelSignIn?: string;
     labelSignUp?: string;
@@ -24,8 +27,6 @@ export interface SignInProps {
     onSignUp: () => void;
     onSignIn: () => void;
     className?: string;
-    classNameEmail?: string;
-    classNamePassword?: string;
     email: string;
     emailError: string;
     password: string;
@@ -34,11 +35,17 @@ export interface SignInProps {
     emailPlaceholder: string;
     passwordFocused: boolean;
     passwordPlaceholder: string;
+    phoneNumber: string;
+    phoneNumberError: string;
+    phoneNumberPlaceholder: string;
+    phoneNumberFocused: boolean;
+    phoneNumberLabel?: string;
     isFormValid: () => void;
     refreshError: () => void;
     handleChangeFocusField: (value: string) => void;
     changePassword: (value: string) => void;
     changeEmail: (value: string) => void;
+    changePhoneNumber: (value: string) => void;
     captchaType?: 'recaptcha' | 'geetest' | 'none';
     renderCaptcha?: JSX.Element | null;
     reCaptchaSuccess?: boolean;
@@ -73,13 +80,17 @@ const SignIn: React.FC<SignInProps> = ({
     geetestCaptchaSuccess,
     reCaptchaSuccess,
     renderCaptcha,
-    classNameEmail,
-    classNamePassword,
+    phoneNumber,
+    phoneNumberError,
+    phoneNumberPlaceholder,
+    phoneNumberLabel,
+    changePhoneNumber,
 }) => {
     const isMobileDevice = useSelector(selectMobileDeviceState);
     const history = useHistory();
     const { formatMessage } = useIntl();
     const [selectTab, setSelectTab] = React.useState('email');
+    const [showPassword, setShowPassword] = React.useState(false);
 
     const isValidForm = React.useCallback(() => {
         const isEmailValid = email.match(EMAIL_REGEX);
@@ -156,7 +167,7 @@ const SignIn: React.FC<SignInProps> = ({
         () => (
             <span>
                 {formatMessage({ id: 'page.header.signIN.noAccountYet' })}
-                <span onClick={() => history.push('/signup')}>
+                <span className="text-primary fw-bold ml-2" onClick={() => history.push('/signup')}>
                     {formatMessage({ id: 'page.body.landing.header.button3' })}
                 </span>
             </span>
@@ -165,59 +176,85 @@ const SignIn: React.FC<SignInProps> = ({
     );
 
     return (
-        <React.Fragment>
-            <div>
-                <CustomInput
-                    type="email"
-                    label={emailLabel || 'Email'}
-                    placeholder={emailPlaceholder}
-                    defaultLabel="Email"
-                    handleChangeInput={handleChangeEmail}
-                    inputValue={email}
-                    handleFocusInput={() => handleFieldFocus('email')}
-                    classNameLabel="form-label white-text text-sm"
-                    autoFocus={!isMobileDevice}
-                    labelVisible
-                    classNameInput={classNameEmail}
-                />
-                {emailError && <div className={'invalid-feedback'}>{emailError}</div>}
-            </div>
+        <section className="py-5 mt-5 login-content">
+            <img src={patternDots} alt="#" className="right" />
+            <img src={patternDots} alt="#" className="left" />
+            <div className="container">
+                <div className="card bg-light p-5 shadow-sm border-0 radius-8">
+                    <div className="row align-items-center">
+                        <div className="col-lg-6">
+                            <div className="p-5">
+                                <img src={heroSignin} alt="#" className="w-100" />
+                            </div>
+                        </div>
+                        <div className="col-lg-6">
+                            <div className="card p-3 border-0">
+                                <div className="text-center">
+                                    <h2 className="text-dark mb-4">Login</h2>
+                                </div>
+                                <form className="login-form">
+                                    <div className="custom-input">
+                                        <CustomInput
+                                            classNameInput="form-control shadow-none"
+                                            type="email"
+                                            label={emailLabel || ''}
+                                            placeholder={emailPlaceholder}
+                                            defaultLabel="Email"
+                                            handleChangeInput={handleChangeEmail}
+                                            inputValue={email}
+                                            handleFocusInput={() => handleFieldFocus('email')}
+                                            classNameLabel="form-label"
+                                            autoFocus={!isMobileDevice}
+                                        />
+                                        {emailError && <div className={'invalid-feedback'}>{emailError}</div>}
+                                    </div>
 
-            <div>
-                <CustomInput
-                    type="password"
-                    label={passwordLabel || 'Password'}
-                    placeholder={passwordPlaceholder}
-                    defaultLabel="Password"
-                    handleChangeInput={handleChangePassword}
-                    inputValue={password}
-                    handleFocusInput={() => handleFieldFocus('password')}
-                    classNameLabel="form-label white-text text-sm"
-                    autoFocus={false}
-                    labelVisible
-                    classNameInput={classNamePassword}
-                />
-                {passwordError && <div className={'invalid-feedback'}>{passwordError}</div>}
-            </div>
+                                    <div className="custom-input">
+                                        <CustomInput
+                                            type={showPassword ? 'text' : 'password'}
+                                            label={passwordLabel || ''}
+                                            placeholder={passwordPlaceholder}
+                                            defaultLabel="Password"
+                                            handleChangeInput={handleChangePassword}
+                                            inputValue={password}
+                                            handleFocusInput={() => handleFieldFocus('password')}
+                                            classNameLabel="form-label"
+                                            autoFocus={false}
+                                        />
+                                    </div>
+                                    {passwordError && <div className={'invalid-feedback'}>{passwordError}</div>}
+                                    <div className="mt-2 mb-2">{captchaLogin() && renderCaptcha}</div>
 
-            <div className="mt-2 mb-2">{captchaLogin() && renderCaptcha}</div>
-            <div className="mt-4">
-                <Button
-                    block={true}
-                    type="button"
-                    disabled={isLoading || !email.match(EMAIL_REGEX) || !password || isButtonDisabled}
-                    onClick={handleClick as any}
-                    size="lg"
-                    variant="primary">
-                    {isLoading ? 'Loading...' : labelSignIn ? labelSignIn : 'Sign in'}
-                </Button>
-            </div>
-            <div className="position-relative mt-2">
-                <div className="text-xs grey-text position-absolute right-position cursor-pointer">
-                    {renderForgotButton}
+                                    <div className="form-group">
+                                        <div className="text-right small">
+                                            <a href="forget-password.html" className="text-primary">
+                                                Forgot Password?
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <Button
+                                            block={true}
+                                            type="button"
+                                            disabled={
+                                                isLoading || !email.match(EMAIL_REGEX) || !password || isButtonDisabled
+                                            }
+                                            onClick={handleClick as any}
+                                            size="lg"
+                                            className="btn-login"
+                                            variant="primary">
+                                            {isLoading ? 'Loading...' : labelSignIn ? labelSignIn : 'Login'}
+                                        </Button>
+                                    </div>
+                                </form>
+
+                                <div className="mt-4">{renderRegister}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </React.Fragment>
+        </section>
     );
 };
 

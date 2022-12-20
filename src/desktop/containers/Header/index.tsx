@@ -16,6 +16,7 @@ import {
     setMobileWalletUi,
     toggleMarketSelector,
     selectUserLoggedIn,
+    changeColorTheme,
     logoutFetch,
 } from '../../../modules';
 import { Logo } from '../../../assets/images/Logo';
@@ -49,7 +50,16 @@ export interface HeaderState {
     showProfileDropdown: boolean;
 }
 
-const authHeader = ['/signin', '/signup', '/email-verification', '/forgot_password', '/password_reset', '/trading'];
+const authHeader = [
+    '/signin',
+    '/signup',
+    '/email-verification',
+    '/forgot_password',
+    '/password_reset',
+    '/trading',
+    '/security',
+    '/two-fa-activation',
+];
 const tradingHeader = ['/trading'];
 
 type Props = ReduxProps & DispatchProps & IntlProps & LocationProps & OwnProps;
@@ -181,7 +191,7 @@ class Head extends React.Component<Props, HeaderState> {
 
         return (
             <React.Fragment>
-                <nav className="navbar navbar-expand-lg dark-bg-main py-2 px-24">
+                <nav className="navbar navbar-expand-lg bg-white py-2 px-24">
                     <Link to="/" className="navbar-brand">
                         <Logo />
                     </Link>
@@ -288,7 +298,7 @@ class Head extends React.Component<Props, HeaderState> {
                                 </a>
                                 {showLanguage ? (
                                     <div
-                                        className="dropdown-menu dark-bg-accent p-3 radius-sm"
+                                        className="dropdown-menu p-3 radius-sm"
                                         aria-labelledby="navbarDropdownMenuLink">
                                         <div className="d-flex">
                                             <div className="language">
@@ -297,7 +307,7 @@ class Head extends React.Component<Props, HeaderState> {
                                                     <div
                                                         key={`language-${key}`}
                                                         onClick={() => this.setState({ showLanguage: false })}
-                                                        className="dropdown-item grey-text-accent text-sm active cursor-pointer">
+                                                        className="dropdown-item bg-white text-sm active cursor-pointer">
                                                         {item.flag} {item.name}
                                                     </div>
                                                 ))}
@@ -307,7 +317,7 @@ class Head extends React.Component<Props, HeaderState> {
                                                 className="currency"
                                                 onClick={() => this.setState({ showLanguage: false })}>
                                                 <p className="text-xs font-bold mb-3 grey-text-accent">Currency</p>
-                                                <div className="dropdown-item grey-text-accent text-sm active cursor-pointer">
+                                                <div className="dropdown-item bg-white text-sm active cursor-pointer">
                                                     <div className="dots" />
                                                     USD
                                                 </div>
@@ -370,19 +380,35 @@ class Head extends React.Component<Props, HeaderState> {
                                 </li>
                             ) : (
                                 // Sign In and Sign Up
+
                                 <React.Fragment>
                                     <li className="nav-item dropdown avatar px-3">
-                                        <Link to={'/signin'} className="gradient-text text-sm font-bold mr-3">
-                                            Sign In
+                                        <Link to={'/signin'} className="text-primary text-sm font-bold mr-3">
+                                            Login
                                         </Link>
                                     </li>
                                     <li className="nav-item dropdown avatar px-3">
                                         <Link to={'/signup'} className="btn btn-primary">
-                                            Sign Up
+                                            Register
                                         </Link>
                                     </li>
                                 </React.Fragment>
                             )}
+
+                            {!thisAuthHeader ? (
+                                <React.Fragment>
+                                    <li className="nav-item dropdown avatar px-3">
+                                        <Link to={'/signin'} className="text-primary text-sm font-bold mr-3">
+                                            Login
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item dropdown avatar px-3">
+                                        <Link to={'/signup'} className="btn btn-primary">
+                                            Register
+                                        </Link>
+                                    </li>
+                                </React.Fragment>
+                            ) : null}
                         </ul>
                     </div>
                 </nav>

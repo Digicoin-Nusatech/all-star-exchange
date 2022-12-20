@@ -15,7 +15,10 @@ import {
     User,
 } from '../../../modules';
 import { Logo } from '../../../assets/images/Logo';
-import { Facebook, Linkedin, Youtube } from '../../../assets/images/SocialMedia';
+import youtubeIcon from '../../../assets/img/icon/youtube.png';
+import linkedinIcon from '../../../assets/img/icon/linkedin.png';
+import facebookIcon from '../../../assets/img/icon/facebook.png';
+import bitcoinCircleIcon from '../../../assets/img/icon/bitcoin-circle.png';
 
 interface State {
     isOpenLanguage: boolean;
@@ -47,99 +50,87 @@ class FooterContainer extends React.Component<Props, State> {
     public render() {
         const { isLoggedIn, lang } = this.props;
         return (
-            <React.Fragment>
-                <footer className="dark-bg-main pt-5">
-                    <div className="container pb-5">
-                        <div className="d-flex justify-content-between flex-wrap">
-                            <div className="name px-3">
-                                <Logo className="mb-3" />
-                                <p className="text-ms grey-text-accent">
-                                    Massa blandit semper varius faucibus. Suspendisse viverra venenatis placerat nam ut.
-                                    Pellentesque sit id tempor turpis.
-                                </p>
+            <footer className="py-5">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-3 mb-4 mb-lg-0 fw-bold">
+                            <div className="logo mb-3">
+                                <Logo />
                             </div>
-                            <div className="link px-3">
-                                <p className="text-lg gradient-text mb-36">LINKS</p>
-                                <a href="#" className="mb-8 d-block text-ms grey-text-accent">
-                                    How it works
-                                </a>
-                                <a href="#" className="mb-8 d-block text-ms grey-text-accent">
-                                    Cryapos
-                                </a>
-                                <a href="#" className="mb-8 d-block text-ms grey-text-accent">
-                                    Features
-                                </a>
-                                <a href="#" className="mb-8 d-block text-ms grey-text-accent">
-                                    Testimonial
-                                </a>
-                                <a href="#" className="mb-8 d-block text-ms grey-text-accent">
-                                    Blogs
-                                </a>
+                            Through many of its unique properties, Bitcoin allows exciting uses that could not be
+                            covered by any previous payment system.
+                        </div>
+                        <div className="col-lg-2 mb-4 mb-lg-0 fw-bold">
+                            <h4 className="text-primary text-uppercase mb-3">Links</h4>
+                            <div className="mb-2">
+                                <a href="#">How it works</a>
                             </div>
-                            <div className="legal px-3">
-                                <p className="text-lg gradient-text mb-36">LEGAL</p>
-                                <a href="#" className="mb-8 text-ms d-block grey-text-accent">
-                                    Terms of use
-                                </a>
-                                <a href="#" className="mb-8 text-ms d-block grey-text-accent">
-                                    Terms of conditions
-                                </a>
-                                <a href="#" className="mb-8 text-ms d-block grey-text-accent">
-                                    Privecy policy
-                                </a>
-                                <a href="#" className="mb-8 text-ms d-block grey-text-accent">
-                                    Cookie policy
-                                </a>
+                            <div className="mb-2">
+                                <a href="#">Cryptos</a>
                             </div>
-                            <div className="newsletter px-3">
-                                <p className="text-lg gradient-text mb-36">NEWSLETTER</p>
-                                <p className="mb-12 text-ms d-block grey-text">Over 25000 people have subscribed</p>
-                                <div className="input-group mb-0">
-                                    <input
-                                        type="text"
-                                        className="form-control newsletter-input"
-                                        placeholder="Enter Your Email"
-                                    />
-                                    <label htmlFor="newslatter" className=" newsletter-input-label">
-                                        SUBSCRIBE
-                                    </label>
-                                </div>
-                                <span className=" text-sm grey-text-accent">We don’t sell your email and spam</span>
+                            <div className="mb-2">
+                                <a href="#">Features</a>
+                            </div>
+                            <div className="mb-2">
+                                <a href="#">Testimonial</a>
+                            </div>
+                            <div className="mb-2">
+                                <a href="#">Blogs</a>
                             </div>
                         </div>
-                    </div>
-                    <div className="container pb-5">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <div className="mr-2">
-                                <a href="" className="text-sm font-normal white-text">
-                                    Privacy &amp; Terms
-                                </a>
-                                <a href="" className="text-sm font-normal white-text">
-                                    Contact
-                                </a>
+                        <div className="col-lg-3 mb-4 mb-lg-0 fw-bold">
+                            <h4 className="text-primary text-uppercase mb-3">Legal</h4>
+                            <div className="mb-2">
+                                <a href="#">Terms of use</a>
                             </div>
-                            <p className="text-sm font-normal white-text mb-0">Copyright @ 2022 Heaven Exchange</p>
-                            <div className="d-flex">
-                                <a href="">
-                                    <div className="mx-1">
-                                        <Facebook />
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div className="mx-1">
-                                        <Linkedin />
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div className="mx-1">
-                                        <Youtube />
-                                    </div>
-                                </a>
+                            <div className="mb-2">
+                                <a href="#">Terms of conditions</a>
+                            </div>
+                            <div className="mb-2">
+                                <a href="#">Privecy policy</a>
+                            </div>
+                            <div className="mb-2">
+                                <a href="#">Cookie policy</a>
                             </div>
                         </div>
+                        <div className="col-lg-4 mb-4 mb-lg-0">
+                            <h4 className="text-primary text-uppercase mb-3">Newsletter</h4>
+                            Over 25000 people have subscribed
+                            <form className="f-form mt-3">
+                                <input type="email" className="form-control" placeholder="Enter your email" />
+                                <button className="btn btn-primary">Subscribe</button>
+                            </form>
+                        </div>
                     </div>
-                </footer>
-            </React.Fragment>
+                    <div className="row">
+                        <div className="col-lg-4 mt-4 text-center text-lg-left fw-bold">
+                            <a href="#" className="mr-3 text-dark">
+                                Privacy & Terms
+                            </a>
+                            <a href="#" className="text-dark">
+                                Contact Us
+                            </a>
+                        </div>
+                        <div className="col-lg-4 mt-4 text-center text-dark text-lg-center">
+                            Copyright @ 2022 Heaven Exchange
+                        </div>
+                        <div className="col-lg-4 mt-4 text-center text-dark text-lg-right">
+                            <a href="#" className="ml-3 text-dark">
+                                <img src={youtubeIcon} alt="#" />
+                            </a>
+                            <a href="#" className="ml-3 text-dark">
+                                <img src={linkedinIcon} alt="#" />
+                            </a>
+                            <a href="#" className="ml-3 text-dark">
+                                <img src={facebookIcon} alt="#" />
+                            </a>
+                            <a href="#" className="ml-3 text-dark">
+                                <img src={bitcoinCircleIcon} alt="#" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         );
     }
 

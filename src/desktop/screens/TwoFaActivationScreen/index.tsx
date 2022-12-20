@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeftIcon } from '../../../assets/images/ArrowLeftIcon';
 import { CopyButton } from '../../../assets/images/CopyButton';
-import QRCode from 'react-qr-code';
+import { QRCode } from '../../../components';
 import { copy } from '../../../helpers';
 import { CustomInput } from '../../components';
 import { CopyableTextField } from '../../../components';
@@ -50,92 +50,101 @@ export const TwoFaActivationScreen: React.FC = () => {
 
     return (
         <React.Fragment>
-            <div className="content-wrapper no-sidebar dark-bg-main two-fa-activation-screen">
+            <section className="py-5">
                 <div className="container">
-                    <div className="pt-5">
-                        <div className="__breadcrumb d-flex align-items-center pb-4">
-                            <Link to={`/profile`} className="back-link cursor-pointer">
-                                <ArrowLeftIcon className={'mr-3'} />
-                                <span className="white-text text-lg font-bold">Activation 2FA</span>
-                            </Link>
-                        </div>
-                        <div className="main-content mt-5">
-                            <h6 className="mb-4 white-text text-md font-semibold">Google Authencticator Activation</h6>
-                            <p className=" white-text text-ms mb-8">
-                                1. Download and install Google Authenticator application from
-                                <a href="https://www.apple.com/app-store/" target="_blank">
-                                    <span className="text-ms warning-text"> AppStore </span>
-                                </a>
-                                or
-                                <a href="https://play.google.com/" target="_blank">
-                                    <span className="text-ms warning-text"> Google play </span>
-                                </a>
-                            </p>
-                            <p className="text-ms white-text mb-8">
-                                2. Scan QR code or use secret MFA code:* Save this secret in a secure location. This
-                                code can be used to gain 2FA access from a different device.
-                            </p>
-                            <p className="text-ms white-text font-extrabold mb-24">
-                                3. Please erase your old 2FA Verification in google authenticator application, if you
-                                want to create new 2FA Verification Again.
-                            </p>
-                            <div className="d-flex flex-wrap">
-                                <div>
-                                    <div className="qr-code mt-3">
-                                        <QRCode size={148} value={twoFactorAuthQr} />
-                                    </div>
+                    <div className="d-flex align-items-center mb-4">
+                        <a href="#" className="text-dark fw-bold d-flex align-items-center">
+                            Back to Home
+                        </a>
+                        <span className="mx-2 fs-lg">|</span>Activate 2FA
+                    </div>
+                    <h4 className="fw-bold mb-4">Security Google 2FA Verification</h4>
+                    <ol className="pl-3">
+                        <li>
+                            Download and install Google Authenticator application from{' '}
+                            <span className="text-primary fw-bold">AppStore</span> or{' '}
+                            <span className="text-primary fw-bold">Google play</span>
+                        </li>
+                        <li>
+                            Scan QR code or use secret MFA code:* Save this secret in a secure location. This code can
+                            be used to gain 2FA access from a different device.
+                        </li>
+                    </ol>
+                    <div className="row ">
+                        <div className="col-lg-7">
+                            <form>
+                                <div className="text-dark fw-bold">
+                                    Scan The QR Code to get 2FA or Copy Keys below :
                                 </div>
-                                <div className="form mt-3">
-                                    <p className="text-ms white-text mb-4">
-                                        Scan The QR Code to get 2FA or Copy Keys below :
-                                    </p>
-                                    <div className="d-flex align-items-center mb-4">
-                                        <label className="input-label font-bold" htmlFor="">
-                                            MVA CODE
-                                        </label>
-                                        <fieldset onClick={doCopy}>
-                                            {secret && (
-                                                <CopyableTextField
-                                                    value={secret}
-                                                    fieldId="referral-id"
-                                                    classNameInput="input-classname"
-                                                />
-                                            )}
-                                        </fieldset>
+                                <div className="row align-items-center no-gutters mt-4">
+                                    {/* <div className="col">
+                                        <label className="text-dark fw-bold mb-0">MVA CODE</label>
                                     </div>
-                                    <div className="d-flex align-items-center mb-4">
-                                        <label className="input-label font-bold" htmlFor="">
-                                            2FA Code
-                                        </label>
-                                        <CustomInput
-                                            defaultLabel=""
-                                            inputValue={twoFaValue}
-                                            label=""
-                                            placeholder="_____"
-                                            type="text"
-                                            labelVisible={false}
-                                            classNameLabel="d-none"
-                                            classNameInput="spacing-10 input-classname text-center"
-                                            classNameGroup="mb-0"
-                                            handleChangeInput={(e) => setTwoFaValue(e)}
-                                        />
-                                    </div>
-                                    <div className="d-flex justify-content-end">
-                                        <div className="twofa-button">
-                                            <button
-                                                type="submit"
-                                                onClick={handleTwoFactorAuth}
-                                                className="btn btn-primary btn-block">
-                                                Enable 2FA Code
-                                            </button>
+                                    <div className="col-10">
+                                        <div className="card b-form px-3 py-2 rounded-lg">
+                                            <div onClick={doCopy}>
+                                                {secret && (
+                                                    <CopyableTextField
+                                                        className="copy-mva"
+                                                        fieldId="referal-id"
+                                                        value={secret}
+                                                    />
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div> */}
+
+                                    <div className="row align-items-center no-gutters mt-4">
+                                        <div className="col-3">
+                                            <label className="text-dark fw-bold mb-0">MVA CODE</label>
+                                        </div>
+                                        <div className="col-9">
+                                            <div className="card b-form px-3 py-2 rounded-lg">
+                                                <div className="row">
+                                                    <div className="col-12" onClick={doCopy}>
+                                                        {secret && (
+                                                            <CopyableTextField
+                                                                className="copy-mva col-2 text-right"
+                                                                fieldId="referal-id"
+                                                                value={secret}
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div className="row align-items-center no-gutters mt-4">
+                                    <div className="col-3">
+                                        <label className="text-dark fw-bold mb-0">2FA Code</label>
+                                    </div>
+                                    <div className="col-9">
+                                        <form onSubmit={handleTwoFactorAuth}>
+                                            <CustomInput
+                                                placeholder="2FA Code"
+                                                defaultLabel=""
+                                                type="text"
+                                                label=""
+                                                inputValue={twoFaValue}
+                                                handleChangeInput={(e) => setTwoFaValue(e)}
+                                            />
+                                            <button type="submit" className="btn btn-primary w-100 mt-4">
+                                                Enable 2FA
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="col-lg-4">
+                            <div className="qr-code p-3 w-100">
+                                <QRCode data={twoFactorAuthQr} />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </React.Fragment>
     );
 };
