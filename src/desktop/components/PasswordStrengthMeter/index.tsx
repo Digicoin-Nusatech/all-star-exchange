@@ -13,62 +13,55 @@ export interface PasswordStrengthMeterProps {
     translate: (id: string) => string;
 }
 
+const passwordStrengthBar = (passwordStatus: number) => {
+    switch (passwordStatus) {
+        case 0:
+            return '20%';
+        case 1:
+            return '40%';
+        case 2:
+            return '60%';
+        case 3:
+            return '80%';
+        case 4:
+            return '100%';
+        default:
+            return;
+    }
+};
+
 const renderPasswordStrengthMeter = (passwordStrengthMeterLength: number) => (
-    <div className="password-strength-container mb-8 mt-8 d-flex justify-content-between align-items-center w-100 bg-transparent">
-        <div
-            className={`password-strength ${
-                passwordStrengthMeterLength === 0
-                    ? 'too-weak'
-                    : passwordStrengthMeterLength === 1
-                    ? 'weak'
-                    : passwordStrengthMeterLength === 2
-                    ? 'good'
-                    : passwordStrengthMeterLength === 3
-                    ? 'strong'
-                    : passwordStrengthMeterLength === 4
-                    ? 'very-strong'
-                    : ''
-            }`}></div>
-        <div
-            className={`password-strength ${
-                passwordStrengthMeterLength === 1
-                    ? 'weak'
-                    : passwordStrengthMeterLength === 2
-                    ? 'good'
-                    : passwordStrengthMeterLength === 3
-                    ? 'strong'
-                    : passwordStrengthMeterLength === 4
-                    ? 'very-strong'
-                    : ''
-            }`}></div>
-        <div
-            className={`password-strength ${
-                passwordStrengthMeterLength === 2
-                    ? 'good'
-                    : passwordStrengthMeterLength === 3
-                    ? 'strong'
-                    : passwordStrengthMeterLength === 4
-                    ? 'very-strong'
-                    : ''
-            }`}></div>
-        <div
-            className={`password-strength ${
-                passwordStrengthMeterLength === 3 ? 'strong' : passwordStrengthMeterLength === 4 ? 'very-strong' : ''
-            }`}></div>
-        <div className={`password-strength ${passwordStrengthMeterLength === 4 ? 'very-strong' : ''}`}></div>
-    </div>
+    <>
+        <div className="progress m-0">
+            <div
+                className={`progress-bar password-strength password-length ${passwordStrengthClassName(
+                    passwordStrengthMeterLength
+                )}`}
+                role="progressbar"
+                style={{
+                    width: `${passwordStrengthBar(passwordStrengthMeterLength)}`,
+                    height: '7px',
+                }}
+                aria-valuenow={0}
+                aria-valuemin={0}
+                aria-valuemax={100}
+            />
+        </div>
+    </>
 );
 
 const renderPasswordStrengthTip = (props: PasswordStrengthMeterProps, passwordStrengthMeterLength: number) =>
     props.passwordPopUp ? (
-        <div>
+        <>
             <div>
                 <div
                     className={`strength-status w-100 text-xs font-bold d-flex justify-content-end ${passwordStrengthClassName(
                         passwordStrengthMeterLength
                     )}`}>
-                    <p className="white-text mr-1">{props.translate('page.header.signUp.strength.password')}: </p>
-                    <p className=""> {passwordStrengthStatus(passwordStrengthMeterLength, props.translate)}</p>
+                    <p className="text-dark mb-0 mr-1">{props.translate('page.header.signUp.strength.password')}: </p>
+                    <p className="fw-bold m-0">
+                        {passwordStrengthStatus(passwordStrengthMeterLength, props.translate)}
+                    </p>
                 </div>
             </div>
             <PasswordStrengthTip
@@ -78,7 +71,7 @@ const renderPasswordStrengthTip = (props: PasswordStrengthMeterProps, passwordSt
                 passwordPopUp={props.passwordPopUp}
                 translate={props.translate}
             />
-        </div>
+        </>
     ) : null;
 
 const passwordStrengthClassName = (passwordStrengthMeterLength: number) => {

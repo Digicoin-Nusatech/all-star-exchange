@@ -14,21 +14,24 @@ export const WalletsScreen: FC = (): ReactElement => {
 
     return (
         <React.Fragment>
-            <div className="wallet-screen content-wrapper dark-bg-main">
+            <div className="container py-5 wallet-screen content-wrapper dark-bg-main">
                 <div className="d-flex justify-content-between align-items-center mb-24">
-                    <h1 className="text-xl white-text">Wallet Overview</h1>
+                    <h1 className="text-lg white-text">Asset Overview</h1>
 
-                    <div>
+                    <div className="form-inline ">
                         <Link to={`/trade-history`}>
-                            <button
-                                type="button"
-                                className="btn-secondary mr-24 radius-sm text-sm white-text font-bold">
-                                Trade History
+                            <button type="button" className="btn btn-primary radius-sm text-sm white-text font-bold">
+                                Deposit
                             </button>
                         </Link>
-                        <Link to={`/history-transaction`}>
-                            <button type="button" className="btn-secondary radius-sm text-sm white-text font-bold">
-                                Transaction History
+                        <Link className="ml-3" to={`/history-transaction`}>
+                            <button type="button" className="btn btn-outline-primary text-sm white-text font-bold">
+                                Withdraw
+                            </button>
+                        </Link>
+                        <Link className="ml-3" to={`/history-transaction`}>
+                            <button type="button" className="btn btn-outline-primary text-sm white-text font-bold">
+                                Transfer
                             </button>
                         </Link>
                     </div>

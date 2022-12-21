@@ -115,8 +115,8 @@ export const en = {
 
     /* Landing */
     'page.body.landing.header.button1': 'profile',
-    'page.body.landing.header.button2': 'log in',
-    'page.body.landing.header.button3': 'register',
+    'page.body.landing.header.button2': 'sign in',
+    'page.body.landing.header.button3': 'sign up',
 
     'page.body.landing.marketInfo.title.text1': 'Welcome to NusaExchange.',
     'page.body.landing.marketInfo.title.text2': 'Buy, sell and trade digital currency.',

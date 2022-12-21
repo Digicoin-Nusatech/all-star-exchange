@@ -74,7 +74,7 @@ class CustomInput extends React.Component<Props, State> {
                     <label className={classNameLabel}>{(labelVisible || inputValue) && (label || defaultLabel)}</label>
                     <InputGroup size="sm">
                         <FormControl
-                            size="lg"
+                            size="sm"
                             type={this.state.inputType}
                             value={inputValue.toString()}
                             placeholder={placeholder}
@@ -95,9 +95,9 @@ class CustomInput extends React.Component<Props, State> {
                         {type == 'password' ? (
                             <div className="eye-password-icon" onClick={this.handleShowPassword}>
                                 {this.state.showPassword ? (
-                                    <EyeOpen className="password-icon" />
-                                ) : (
                                     <EyeClose className="password-icon" />
+                                ) : (
+                                    <EyeOpen className="password-icon" />
                                 )}
                             </div>
                         ) : (

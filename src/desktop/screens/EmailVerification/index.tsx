@@ -28,9 +28,10 @@ import {
     selectConfirmationCodeCreateSuccess,
 } from '../../../modules';
 import { CommonError } from '../../../modules/types';
-import { Link } from 'react-router-dom';
 import PinInput from 'react-pin-input';
-import bgAuth from '../../../assets/png/bg-auth2.png';
+
+import patternDots from '../../../assets/img/pattern-dots2.png';
+import heroSignin from '../../../assets/img/hero-sign-in.png';
 
 interface OwnProps {
     history: History;
@@ -95,81 +96,78 @@ class EmailVerificationComponent extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                <div className="row verif-screen">
-                    <div className="col-md-5 dark-bg-accent min-h-full px-0">
-                        <div className="bg-auth" style={{ backgroundImage: `url(${bgAuth})` }}></div>
-                    </div>
-                    <div className="col-md-7 dark-bg-main min-h-full position-relative">
-                        <div className="text-to-signup mb-24 text-right">
-                            <span>
-                                <p className="white-text font-bold">
-                                    Already have an account?
-                                    <Link to="/signin">
-                                        <span className="contrast-text ml-1 cursor-pointer decoration-none">
-                                            Sign In
-                                        </span>{' '}
-                                    </Link>
-                                </p>
-                            </span>
-                        </div>
-                        <div className="main-wrapper">
-                            <div className="main-form">
-                                <h3 className="title-2 white-text font-semibold mb-8">Activate Account</h3>
-                                <h5 className="mb-24 text-xs font-normal grey-text">
-                                    We sent a code to {this.props.location.state?.email}, to confirm your registration
-                                </h5>
-                                <div className="mb-24">
-                                    <div className="mb-8 text-xs font-normal white-text">Verification Code</div>
-                                    <PinInput
-                                        length={6}
-                                        onChange={this.handleChangeConfirmChange}
-                                        onComplete={this.handleChangeConfirmChange}
-                                        type="numeric"
-                                        inputMode="number"
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            marginBottom: '8px',
-                                        }}
-                                        inputStyle={{
-                                            background: '#F2F0FF',
-                                            borderRadius: '4px',
-                                            fontSize: '20px',
-                                            color: 'color: #23262F',
-                                        }}
-                                        inputFocusStyle={{ fontSize: '20px', color: 'color: #23262F' }}
-                                        autoSelect={true}
-                                        regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
-                                    />
-                                    <div className="text-right">
-                                        {emailVerificationLoading ? (
-                                            <Spinner animation="border" variant="primary" />
-                                        ) : (
-                                            <button
-                                                className="btn-send-again text-sm grey-text border-none bg-transparent cursor-pointer"
-                                                onClick={this.handleClick}
-                                                disabled={this.disableButton()}>
-                                                {/* {button} */}
-                                                Resend Code
-                                            </button>
-                                        )}
+                <section className="py-5 mt-5 email-verification">
+                    <img src={patternDots} alt="#" className="right" />
+                    <img src={patternDots} alt="#" className="left" />
+                    <div className="container">
+                        <div className="card bg-light p-5 shadow-sm border-0 radius-8">
+                            <div className="row align-items-center">
+                                <div className="col-lg-6">
+                                    <div className="p-5">
+                                        <img src={heroSignin} alt="#" className="w-100" />
                                     </div>
-                                    <div className="mt-4 mb-2">{this.renderCaptcha()}</div>
                                 </div>
-                                <Button
-                                    block={true}
-                                    type="button"
-                                    disabled={this.disableButton()}
-                                    onClick={this.codeConfirm}
-                                    size="lg"
-                                    className="button registration__button mb-8"
-                                    variant="primary">
-                                    Activate Account
-                                </Button>
+                                <div className="col-lg-6">
+                                    <div className="card p-3 border-0">
+                                        <div className="text-left">
+                                            <h3 className="text-dark mb-4">Enter The Verification Code</h3>
+                                        </div>
+                                        <form>
+                                            <label>Email Verification</label>
+                                            <PinInput
+                                                length={6}
+                                                onChange={this.handleChangeConfirmChange}
+                                                onComplete={this.handleChangeConfirmChange}
+                                                type="numeric"
+                                                inputMode="number"
+                                                style={{
+                                                    display: 'flex',
+                                                    justifyContent: 'space-between',
+                                                    marginBottom: '8px',
+                                                    borderColor: '#5b46f6',
+                                                }}
+                                                inputStyle={{
+                                                    borderColor: '#F2F0FF',
+                                                    background: '#F2F0FF',
+                                                    borderRadius: '4px',
+                                                    fontSize: '20px',
+                                                    color: '#23262F',
+                                                }}
+                                                inputFocusStyle={{ fontSize: '20px', color: 'color: #23262F' }}
+                                                autoSelect={true}
+                                                regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
+                                            />
+                                            <div className="text-right">
+                                                {emailVerificationLoading ? (
+                                                    <Spinner animation="border" variant="primary" />
+                                                ) : (
+                                                    <button
+                                                        className="btn btn-link text-primary mt-3"
+                                                        onClick={this.handleClick}
+                                                        disabled={this.disableButton()}>
+                                                        {/* {button} */}
+                                                        Resend Code
+                                                    </button>
+                                                )}
+                                            </div>
+                                            <div className="mt-2 mb-4">{this.renderCaptcha()}</div>
+                                            <Button
+                                                block={true}
+                                                type="button"
+                                                disabled={this.disableButton()}
+                                                onClick={this.codeConfirm}
+                                                size="lg"
+                                                className="btn-full"
+                                                variant="primary">
+                                                Activate Account
+                                            </Button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </React.Fragment>
         );
     }

@@ -39,7 +39,8 @@ export const TwoFaActivationScreen: React.FC = () => {
         }
     }, [twoFactorEnabledSucces]);
 
-    const handleTwoFactorAuth = () => {
+    const handleTwoFactorAuth = (e) => {
+        e.preventDefault();
         dispatch(toggle2faFetch({ code: twoFaValue, enable: true }));
     };
 
@@ -109,8 +110,8 @@ export const TwoFaActivationScreen: React.FC = () => {
                                         )}
                                     </div>
                                 </div>
-                                <div className="row align-items-center no-gutters mt-4">
-                                    <div className="col-3">
+                                {/* <div className="input-2fa">
+                                    <div className="col-3 bg-warning">
                                         <label className="text-dark fw-bold mb-0">2FA Code</label>
                                     </div>
                                     <div className="col-9">
@@ -120,6 +121,7 @@ export const TwoFaActivationScreen: React.FC = () => {
                                                 defaultLabel=""
                                                 type="text"
                                                 label=""
+                                                classNameInput="custom-input-code"
                                                 inputValue={twoFaValue}
                                                 handleChangeInput={(e) => setTwoFaValue(e)}
                                             />
@@ -128,11 +130,34 @@ export const TwoFaActivationScreen: React.FC = () => {
                                             </button>
                                         </form>
                                     </div>
+                                </div> */}
+
+                                <div className="row align-items-start no-gutters mt-4">
+                                    <div className="col-3">
+                                        <label className="text-dark fw-bold mt-1">2FA CODE</label>
+                                    </div>
+                                    <div className="col-9 form-code">
+                                        <CustomInput
+                                            placeholder="2FA Code"
+                                            defaultLabel=""
+                                            type="text"
+                                            label=""
+                                            classNameInput="custom-input-code"
+                                            inputValue={twoFaValue}
+                                            handleChangeInput={(e) => setTwoFaValue(e)}
+                                        />
+                                        <button
+                                            onClick={handleTwoFactorAuth}
+                                            type="submit"
+                                            className="btn btn-primary w-100">
+                                            Enable 2FA
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                         <div className="col-lg-4">
-                            <div className="qr-code p-3 w-100">
+                            <div className="qr-code p-2">
                                 <QRCode data={twoFactorAuthQr} />
                             </div>
                         </div>

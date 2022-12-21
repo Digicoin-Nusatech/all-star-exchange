@@ -167,7 +167,9 @@ const SignIn: React.FC<SignInProps> = ({
         () => (
             <span>
                 {formatMessage({ id: 'page.header.signIN.noAccountYet' })}
-                <span className="text-primary fw-bold ml-2" onClick={() => history.push('/signup')}>
+                <span
+                    className="text-primary ml-2 text-capitalize text-primary font-weight-bold cursor-pointer"
+                    onClick={() => history.push('/signup')}>
                     {formatMessage({ id: 'page.body.landing.header.button3' })}
                 </span>
             </span>
@@ -190,7 +192,7 @@ const SignIn: React.FC<SignInProps> = ({
                         <div className="col-lg-6">
                             <div className="card p-3 border-0">
                                 <div className="text-center">
-                                    <h2 className="text-dark mb-4">Login</h2>
+                                    <h2 className="text-dark mb-4">Sign In</h2>
                                 </div>
                                 <form className="login-form">
                                     <div className="custom-input">

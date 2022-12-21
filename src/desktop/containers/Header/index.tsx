@@ -24,6 +24,18 @@ import ProfileAvatar from '../../../assets/png/avatar.png';
 import { IndonesianFlag, AmericanFlag, ChinaFlag, KoreaFlag } from '../../../assets/images/Flags';
 import { Api, Dashboard, Logout, Referral, Security, Setting, Wallet } from '../../../assets/images/ProfileDropdown';
 import { BnbIcon, BtcIcon, DogeIcon, TronIcon } from '../../../assets/images/CoinIcon';
+
+import walletIcon from '../../../assets/img/icon/dompet2.png';
+import bellIcon from '../../../assets/img/icon/bell.png';
+import avatarIcon from '../../../assets/img/avatar.png';
+import scanBlackIcon from '../../../assets/img/icon/scan-black.png';
+import securityBlackIcon from '../../../assets/img/icon/security-black.png';
+import usersIcon from '../../../assets/img/icon/users-black.png';
+import webBlackIcon from '../../../assets/img/icon/web-black.png';
+import referralBlackIcon from '../../../assets/img/icon/referral-black.png';
+import logoutIcon from '../../../assets/img/icon/logout.png';
+import chevronDownIcon from '../../../assets/img/icon/chevron-down.png';
+
 interface ReduxProps {
     currentMarket: Market | undefined;
     colorTheme: string;
@@ -62,7 +74,7 @@ const authHeader = [
 ];
 const tradingHeader = ['/trading'];
 
-const dontShowAuthButton = ['/signin', '/signup'];
+const dontShowAuthButton = ['/signin', '/signup', '/email-verification'];
 
 type Props = ReduxProps & DispatchProps & IntlProps & LocationProps & OwnProps;
 
@@ -337,54 +349,133 @@ class Head extends React.Component<Props, HeaderState> {
                                 )}
                             </li>
                             {isLoggedIn && (
-                                // Profile Dropdown
-                                <li className="nav-item dropdown avatar px-3">
-                                    <div
-                                        className="nav-link cursor-pointer dropdown-toggle grey-text-accent text-sm"
-                                        onClick={() => this.setState({ showProfileDropdown: !showProfileDropdown })}>
-                                        <img src={ProfileAvatar} className="avatar-image" alt="" />
+                                <>
+                                    <div className="navbar-button-icon">
+                                        <div className="rounded-circle p-1 bg-white">
+                                            <img src={walletIcon} alt="#" />
+                                        </div>
+                                        <div className="rounded-circle p-1 bg-white">
+                                            <img src={bellIcon} alt="#" />
+                                        </div>
                                     </div>
-                                    {showProfileDropdown ? (
+
+                                    <li className="nav-item dropdown avatar px-3">
                                         <div
-                                            className="dropdown-menu dark-bg-accent p-3 radius-sm"
-                                            aria-labelledby="navbarDropdownMenuLink">
-                                            {ProfileDropdown.map((item, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="dropdown-wallets-item"
-                                                    onClick={() => this.setState({ showProfileDropdown: false })}>
-                                                    <Link to={item.url} className="d-flex">
-                                                        {item.icon}
-                                                        <div className="pl-3">
-                                                            <p className="mb-0 text-sm font-bold white-text">
-                                                                {item.name}
-                                                            </p>
-                                                            <span className="text-xs grey-text-accent font-normal">
-                                                                {item.desc}
-                                                            </span>
-                                                        </div>
-                                                    </Link>
-                                                </div>
-                                            ))}
+                                            className="nav-link cursor-pointer align-items-center dropdown-toggle grey-text-accent text-sm"
+                                            onClick={() =>
+                                                this.setState({ showProfileDropdown: !showProfileDropdown })
+                                            }>
+                                            <img src={ProfileAvatar} className="avatar-image" alt="" />
+                                            <img src={chevronDownIcon} alt="#" className="ml-2" />
+                                        </div>
+                                        {showProfileDropdown ? (
                                             <div
-                                                className="dropdown-wallets-item cursor-pointer"
-                                                onClick={() => this.setState({ showProfileDropdown: false })}>
-                                                <div className="d-flex" onClick={logoutButton}>
-                                                    <Logout />
-                                                    <div className="pl-3">
-                                                        <p className="mb-0 text-sm font-bold white-text">Logout</p>
+                                                className="dropdown-menu dark-bg-accent p-3 radius-sm"
+                                                aria-labelledby="navbarDropdownMenuLink">
+                                                {ProfileDropdown.map((item, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="dropdown-wallets-item"
+                                                        onClick={() => this.setState({ showProfileDropdown: false })}>
+                                                        <Link to={item.url} className="d-flex">
+                                                            {item.icon}
+                                                            <div className="pl-3">
+                                                                <p className="mb-0 text-sm font-bold white-text">
+                                                                    {item.name}
+                                                                </p>
+                                                                <span className="text-xs grey-text-accent font-normal">
+                                                                    {item.desc}
+                                                                </span>
+                                                            </div>
+                                                        </Link>
+                                                    </div>
+                                                ))}
+                                                <div
+                                                    className="dropdown-wallets-item cursor-pointer"
+                                                    onClick={() => this.setState({ showProfileDropdown: false })}>
+                                                    <div className="d-flex" onClick={logoutButton}>
+                                                        <Logout />
+                                                        <div className="pl-3">
+                                                            <p className="mb-0 text-sm font-bold white-text">Logout</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        ) : (
+                                            ''
+                                        )}
+                                    </li>
+
+                                    {/* <div className="dropdown nav-link">
+                                        <a
+                                            className="align-items-center"
+                                            type="button"
+                                            data-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <img src={avatarIcon} alt="#" />
+                                            <img src={chevronDownIcon} alt="#" className="ml-2" />
+                                        </a>
+
+                                        <div className="dropdown-menu dropdown-menu-right py-3">
+                                            <a className="dropdown-item d-flex align-items-start active" href="#">
+                                                <img src={scanBlackIcon} alt="#" className="mr-2" />
+                                                <div className="ml-3">
+                                                    <h6 className="text-dark mb-0">User Profile</h6>
+                                                    <small>Summary of Account Profile</small>
+                                                </div>
+                                            </a>
+                                            <hr className="mx-3 my-2" />
+                                            <a className="dropdown-item d-flex align-items-start active" href="#">
+                                                <img src={securityBlackIcon} alt="#" className="mr-2" />
+                                                <div className="ml-3">
+                                                    <h6 className="mb-0">Security Setting</h6>
+                                                    <small>Manage your security account</small>
+                                                </div>
+                                            </a>
+                                            <hr className="mx-3 my-2" />
+                                            <a className="dropdown-item d-flex align-items-start active" href="#">
+                                                <img src={usersIcon} alt="#" className="mr-2" />
+                                                <div className="ml-3">
+                                                    <h6 className="mb-0">Profile Verification</h6>
+                                                    <small>Verify your identitiy</small>
+                                                </div>
+                                            </a>
+                                            <hr className="mx-3 my-2" />
+                                            <a className="dropdown-item d-flex align-items-start active" href="#">
+                                                <img src={webBlackIcon} alt="#" className="mr-2" />
+                                                <div className="ml-3">
+                                                    <h6 className="mb-0">API Management</h6>
+                                                    <small>Make transfers to other or other coins</small>
+                                                </div>
+                                            </a>
+                                            <hr className="mx-3 my-2" />
+                                            <a className="dropdown-item d-flex align-items-start active" href="#">
+                                                <img src={referralBlackIcon} alt="#" className="mr-2" />
+                                                <div className="ml-3">
+                                                    <h6 className="mb-0">Referral Code</h6>
+                                                    <small>Invite your friend</small>
+                                                </div>
+                                            </a>
+                                            <hr className="mx-3 my-2" />
+                                            <button
+                                                onClick={() => {
+                                                    this.props.logout();
+                                                }}
+                                                className="dropdown-item d-flex align-items-start active">
+                                                <img src={logoutIcon} alt="#" className="mr-2" />
+                                                <div className="ml-3">
+                                                    <h6 className="text-dark mb-0">Logout</h6>
+                                                </div>
+                                            </button>
                                         </div>
-                                    ) : (
-                                        ''
-                                    )}
-                                </li>
+                                    </div> */}
+                                </>
+
+                                // Profile Dropdown
                             )}
 
                             {!thisAuthHeaderButton && !isLoggedIn && (
-                                <React.Fragment>
+                                <>
                                     <li className="nav-item dropdown avatar px-3">
                                         <Link to={'/signin'} className="text-primary text-sm font-bold mr-3">
                                             Login
@@ -395,7 +486,7 @@ class Head extends React.Component<Props, HeaderState> {
                                             Register
                                         </Link>
                                     </li>
-                                </React.Fragment>
+                                </>
                             )}
                         </ul>
                     </div>

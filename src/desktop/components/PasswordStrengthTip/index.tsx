@@ -15,9 +15,9 @@ const PasswordStrengthTipComponent: React.FC<PasswordStrengthTipProps> = ({
     translate,
 }) =>
     !(passwordErrorFirstSolved && passwordErrorSecondSolved && passwordErrorThirdSolved) ? (
-        <div className="text-xs grey-text">
-            <p className="m-0">{translate('password.strength.tip.influence')}:</p>
-            <ul className="p-0 style-none">
+        <div className="text-xs">
+            <p className="text-dark">{translate('password.strength.tip.influence')}:</p>
+            <ul className="list-unstyled list-validation text-danger">
                 <li>
                     {!passwordErrorFirstSolved && <span>{translate('password.strength.tip.number.characters')}</span>}
                 </li>

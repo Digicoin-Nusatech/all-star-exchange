@@ -10,7 +10,7 @@ export interface QRCodeProps {
     data: string;
     /**
      * Defines the size of QR code component.
-     * @default 118x118
+     * @default 400x400
      */
     dimensions?: number;
 }

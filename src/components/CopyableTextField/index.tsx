@@ -69,6 +69,11 @@ class CopyableTextField extends React.Component<CopyableTextFieldProps> {
                         </Button>
                     </InputGroup.Append> */}
 
+                <div onClick={doCopy} className="input-group-append border-0  mr-2">
+                    <span className="input-group-text" id="basic-addon2">
+                        <CopyButton className="copy-icon" />
+                    </span>
+                </div>
                 {/* <div onClick={doCopy} className="input-group">
                     <input
                         type="text"
@@ -78,11 +83,6 @@ class CopyableTextField extends React.Component<CopyableTextFieldProps> {
                         onClick={doCopy}
                         value={value}
                     />
-                    <div className="input-group-append">
-                        <span className="input-group-text" id="basic-addon2">
-                            copy
-                        </span>
-                    </div>
                 </div> */}
             </div>
         );

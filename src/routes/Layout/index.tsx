@@ -248,6 +248,7 @@ class LayoutComponent extends React.Component<LayoutProps, LayoutState> {
     public render() {
         const { colorTheme, isLoggedIn, isMobileDevice, userLoading, location, platformAccessStatus } = this.props;
         const { isShownExpSessionModal } = this.state;
+
         const desktopCls = classnames('container-fluid p-0 pg-layout', {
             'trading-layout': location.pathname.includes('/trading'),
         });

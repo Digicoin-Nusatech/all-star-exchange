@@ -58,7 +58,7 @@ const RenderDeviceContainers = () => {
                 <HeaderContainer />
                 <AlertsContainer />
                 <LayoutContainer />
-                {location.pathname === '/' && <FooterContainer />}
+                {location.pathname === '/' ? <FooterContainer /> : ''}
             </React.Fragment>
         );
     }

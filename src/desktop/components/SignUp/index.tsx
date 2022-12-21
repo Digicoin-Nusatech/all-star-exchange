@@ -2,6 +2,8 @@ import cr from 'classnames';
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { useIntl } from 'react-intl';
 import { CustomInput, PasswordStrengthMeter } from '../';
 import { isUsernameEnabled } from '../../../api';
 import { captchaType, passwordMinEntropy } from '../../../api/config';
@@ -129,6 +131,8 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
     const isMobileDevice = useSelector(selectMobileDeviceState);
     const [expand, setExpand] = React.useState(false);
     const [show, setShow] = React.useState(false);
+    const history = useHistory();
+    const { formatMessage } = useIntl();
     const [showError, setShowError] = React.useState(false);
     const [showModalAddBeneficiary, setShowModalModalAddBeneficiary] = React.useState(false);
     const [showModalBeneficiaryList, setShowModalBeneficiaryList] = React.useState(false);
@@ -185,7 +189,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                     handleChangeInput={handleChangePassword}
                     inputValue={password}
                     handleFocusInput={handleFocusPassword}
-                    classNameLabel="white-text text-sm"
+                    classNameLabel="form-label"
                     classNameInput={`${
                         passwordFocused &&
                         (!passwordErrorFirstSolved || !passwordErrorSecondSolved || !passwordErrorThirdSolved) &&
@@ -194,10 +198,10 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                     autoFocus={false}
                     labelVisible
                 />
-                {passwordFocused &&
+                {/* {passwordFocused &&
                     (!passwordErrorFirstSolved || !passwordErrorSecondSolved || !passwordErrorThirdSolved) && (
                         <p className="danger-text m-0 mb-24 text-xs">Password Strength must be GOOD</p>
-                    )}
+                    )} */}
                 {password ? (
                     <PasswordStrengthMeter
                         minPasswordEntropy={passwordMinEntropy()}
@@ -271,10 +275,23 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
         return nick.length < 4 ? translate(ERROR_SHORT_USERNAME) : translate(ERROR_LONG_USERNAME);
     };
 
+    const renderLogin = React.useMemo(
+        () => (
+            <span>
+                {formatMessage({ id: 'page.header.signUp.alreadyRegistered' })}
+                <span
+                    className="ml-2 text-capitalize text-primary font-weight-bold cursor-pointer"
+                    onClick={() => history.push('/signin')}>
+                    {formatMessage({ id: 'page.body.landing.header.button2' })}
+                </span>
+            </span>
+        ),
+        [formatMessage, history]
+    );
+
     return (
         <React.Fragment>
-            <div className="field">
-                <CustomInput
+            {/* <CustomInput
                     type="text"
                     label={usernameLabel || 'Username'}
                     placeholder={usernameLabel || 'Username'}
@@ -286,19 +303,137 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                     classNameInput={`${usernameFocused && !username.match(USERNAME_REGEX) && 'error'}`}
                     autoFocus={!isMobileDevice}
                     labelVisible
-                />
-                {/* {!username.match(USERNAME_REGEX) && !usernameFocused && username.length ? (
+                /> */}
+            {/* {!username.match(USERNAME_REGEX) && !usernameFocused && username.length ? (
                     <div className="invalid-feedback">{renderUsernameError(username)}</div>
                 ) : null} */}
-                {usernameFocused && !username.match(USERNAME_REGEX) && (
+            {/* {usernameFocused && !username.match(USERNAME_REGEX) && (
                     <p className="text-xs danger-text m-0 mb-24">
                         Username must be at least 4 characters long and maximum 12 characters
                     </p>
-                )}
+                )} */}
+
+            <div className="mt-4">
+                <CustomInput
+                    type="text"
+                    label={usernameLabel || 'Username'}
+                    placeholder={usernameLabel || 'Username'}
+                    defaultLabel="Username"
+                    handleChangeInput={handleChangeUsername}
+                    inputValue={username}
+                    handleFocusInput={handleFocusUsername}
+                    classNameLabel="form-label"
+                    classNameInput=""
+                    autoFocus={!isMobileDevice}
+                />
+                {!username.match(USERNAME_REGEX) && !usernameFocused && username.length ? (
+                    <div className="invalid-feedback">{renderUsernameError(username)}</div>
+                ) : null}
             </div>
 
-            <div className="field">
+            <div className="mt-3">
                 <CustomInput
+                    type="email"
+                    label={emailLabel || 'Email'}
+                    placeholder={emailLabel || 'Email'}
+                    defaultLabel="Email"
+                    handleChangeInput={handleChangeEmail}
+                    inputValue={email}
+                    handleFocusInput={handleFocusEmail}
+                    classNameLabel="form-label"
+                    classNameInput={`${emailFocused && !email.match(EMAIL_REGEX) && 'error'}`}
+                    autoFocus={!isUsernameEnabled() && !isMobileDevice}
+                    labelVisible
+                />
+                {/* {emailFocused && !email.match(EMAIL_REGEX) && (
+                    <p className="text-xs danger-text m-0 mb-24">Enter a valid email address</p>
+                )} */}
+                {emailError && <div className="invalid-feedback">{emailError}</div>}
+            </div>
+
+            {renderPasswordInput()}
+
+            <div className="mt-3">
+                <CustomInput
+                    type="password"
+                    label={confirmPasswordLabel || 'Confirm Password'}
+                    placeholder={confirmPasswordLabel || 'Confirm Password'}
+                    defaultLabel="Confirm Password"
+                    handleChangeInput={handleChangeConfirmPassword}
+                    inputValue={confirmPassword}
+                    handleFocusInput={handleFocusConfirmPassword}
+                    classNameLabel="form-label"
+                    classNameInput={`rounded-sm m-0 ${
+                        confirmPasswordFocused && confirmPassword !== password && 'error'
+                    }`}
+                    autoFocus={false}
+                    labelVisible
+                />
+                {/* {emailFocused && !email.match(EMAIL_REGEX) && (
+                    <p className="text-xs danger-text m-0 mb-24">Enter a valid email address</p>
+                )} */}
+                {emailError && <div className="invalid-feedback">{emailError}</div>}
+            </div>
+
+            <div className="mt-3">
+                <CustomInput
+                    type="text"
+                    label={''}
+                    labelVisible={false}
+                    placeholder={referalCodeLabel || 'Referral code'}
+                    defaultLabel=""
+                    handleChangeInput={handleChangeRefId}
+                    inputValue={refId}
+                    handleFocusInput={handleFocusRefId}
+                    classNameLabel="d-none"
+                    classNameInput="m-0"
+                    autoFocus={false}
+                />
+            </div>
+
+            <div className="mt-3 mb-4">{renderCaptcha}</div>
+
+            <label className="checkbox" onClick={clickCheckBox}>
+                <input
+                    className="checkbox__input mr-2"
+                    type="checkbox"
+                    id="agreeWithTerms"
+                    checked={hasConfirmed}
+                    onChange={clickCheckBox}
+                />
+                <span className="checkbox__inner form-check-label">
+                    <span className="checkbox__tick" />
+                    <span className="checkbox__text">
+                        By signing up I agree that I'm 18 years of age or older, to the{' '}
+                        <a className="checkbox__link fw-bold text-dark" href="#">
+                            User Agreements
+                        </a>{' '}
+                        ,{' '}
+                        <a className="checkbox__link fw-bold text-dark" href="#">
+                            Privacy Policy
+                        </a>{' '}
+                        ,{' '}
+                        <a className="checkbox__link fw-bold text-dark" href="#">
+                            Cookie Policy
+                        </a>
+                    </span>
+                </span>
+            </label>
+
+            <Button
+                block={true}
+                type="button"
+                disabled={disableButton}
+                onClick={(e) => handleClick(e as any)}
+                size="lg"
+                className="button registration-button mt-3"
+                variant="primary">
+                {isLoading ? 'Loading...' : labelSignUp ? labelSignUp : 'Register'}
+            </Button>
+
+            <div className="mt-4">{renderLogin}</div>
+
+            {/* <CustomInput
                     type="email"
                     label={emailLabel || 'Email'}
                     placeholder={emailLabel || 'Email'}
@@ -310,12 +445,11 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                     classNameInput={`${emailFocused && !email.match(EMAIL_REGEX) && 'error'}`}
                     autoFocus={!isUsernameEnabled() && !isMobileDevice}
                     labelVisible
-                />
-                {/* {emailError && <div className="invalid-feedback">{emailError}</div>} */}
-                {emailFocused && !email.match(EMAIL_REGEX) && (
+                /> */}
+            {/* {emailError && <div className="invalid-feedback">{emailError}</div>} */}
+            {/* {emailFocused && !email.match(EMAIL_REGEX) && (
                     <p className="text-xs danger-text m-0 mb-24">Enter a valid email address</p>
-                )}
-            </div>
+                )} */}
 
             {/* <div className="mb-3">
                     <label className="white-text text-sm">Phone</label>
@@ -329,10 +463,9 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                     />
                 </div> */}
 
-            {renderPasswordInput()}
+            {/* {renderPasswordInput()} */}
 
-            <div className="field">
-                <CustomInput
+            {/* <CustomInput
                     type="password"
                     label={confirmPasswordLabel || 'Confirm Password'}
                     placeholder={confirmPasswordLabel || 'Confirm Password'}
@@ -349,10 +482,9 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                 />
                 {confirmPasswordFocused && confirmPassword !== password && (
                     <p className="text-xs danger-text m-0 mb-24">Password Confirmation doesn't match</p>
-                )}
-            </div>
+                )} */}
 
-            <div
+            {/* <div
                 onClick={() => setExpand(!expand)}
                 className={`label-referral cursor-pointer text-sm mb-8 ${expand ? 'white-text' : 'grey-text'}`}>
                 Referral ID (Optional){' '}
@@ -361,9 +493,9 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                 ) : (
                     <ArrowDownIcon className={''} strokeColor={'#6f6f6f'} />
                 )}
-            </div>
+            </div> */}
 
-            {expand && (
+            {/* {expand && (
                 <CustomInput
                     type="text"
                     label={''}
@@ -379,7 +511,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                 />
             )}
 
-            <div className="mt-4 mb-4">{renderCaptcha}</div>
+            <div className="mt-4 mb-4">{renderCaptcha}</div> */}
 
             {/* <label className="checkbox">
                 <input
@@ -409,7 +541,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                 </span>
             </label> */}
 
-            <Button
+            {/* <Button
                 block={true}
                 type="button"
                 disabled={disableButton}
@@ -419,7 +551,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                 className="button registration__button"
                 variant="primary">
                 {isLoading ? 'Loading...' : labelSignUp ? labelSignUp : 'Sign up'}
-            </Button>
+            </Button> */}
 
             {/* {showModalBeneficiaryList && (
                 <ModalBeneficiaryList
@@ -429,7 +561,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
             )}
             {showModalAddBeneficiary && <ModalAddBeneficiary showModalAddBeneficiary={showModalAddBeneficiary} />} */}
 
-            <Modal show={show} onHide={handleClose} className="w-100">
+            {/* <Modal show={show} onHide={handleClose} className="w-100">
                 <Modal.Header className="rounded-top-10 border-none">
                     <h6 className="text-lg grey-text-accent font-normal mb-24">Term of service</h6>
                 </Modal.Header>
@@ -476,7 +608,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                         {isLoading ? 'Loading...' : 'Accept'}
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
         </React.Fragment>
     );
 };

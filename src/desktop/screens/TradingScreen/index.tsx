@@ -4,7 +4,7 @@ import { OpenOrders, OrderBook, MarketListTrade, RecentTrades, OrderForm, Charts
 export const TradingScreen: FC = (): ReactElement => {
     return (
         <React.Fragment>
-            <div className="market-trade-screen">
+            <div className="market-trade-screen container-fluid">
                 <div className="content-wrapper no-sidebar dark-bg-main pb-5">
                     <div className="px-24 pt-1">
                         <div className="grid-wrapper">

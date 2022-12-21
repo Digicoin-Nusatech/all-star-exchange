@@ -150,13 +150,13 @@ const WalletsOverview: FC<Props> = (props: Props): ReactElement => {
                       <div key={index} className="ml-auto">
                           <button
                               onClick={() => handleClickDeposit(currency)}
-                              className="bg-transparent border-none blue-text mr-24">
+                              className="btn btn-outline-primary border-none blue-text">
                               {translate('page.body.wallets.overview.action.deposit')}
                           </button>
                           <button
                               onClick={() => handleClickWithdraw(currency)}
                               //   onClick={() => setShowModalLocked(!showModalLocked)}
-                              className="bg-transparent border-none danger-text">
+                              className="btn btn-primary border-none danger-text ml-3">
                               {translate('page.body.wallets.overview.action.withdraw')}
                           </button>
                       </div>,

@@ -1,3 +1,46 @@
-.input-group {
-    background-color: aquamarine;
+.input-copy-wrapper {
+    padding: 0px !important;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid var(--rgb-form-border) !important;
+
+    .custom-input {
+        width: 100%;
+        background-color: transparent;
+        height: 100%;
+        margin: 0 !important;
+        display: flex;
+        align-items: center;
+        .form-control {
+            height: 50px !important;
+            min-height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+.form-code {
+    .custom-input {
+        display: flex;
+        justify-content: start;
+    }
+
+    .custom-input-code {
+        padding: 22px 10px;
+        margin: 0 !important;
+        border: 1px solid var(--rgb-form-border);
+
+        label {
+            display: none;
+        }
+    }
+}
+
+.code-wrapper {
+    display: flex;
+    margin-top: 30px;
+    align-items: center;
+    flex-direction: row;
 }
