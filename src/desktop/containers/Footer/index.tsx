@@ -2,7 +2,7 @@ import { History } from 'history';
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect, MapDispatchToPropsFunction } from 'react-redux';
-import { Link, RouteProps, withRouter } from 'react-router-dom';
+import { Link, RouteProps, withRouter, useLocation } from 'react-router-dom';
 import { compose } from 'redux';
 import {
     changeLanguage,
@@ -49,6 +49,7 @@ type Props = OwnProps & ReduxProps & RouteProps & DispatchProps;
 class FooterContainer extends React.Component<Props, State> {
     public render() {
         const { isLoggedIn, lang } = this.props;
+
         return (
             <footer className="py-5">
                 <div className="container">

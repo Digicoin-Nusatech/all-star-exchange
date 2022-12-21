@@ -1,6 +1,7 @@
 import { createBrowserHistory } from 'history';
 import * as React from 'react';
 import * as ReactGA from 'react-ga';
+import { useLocation } from 'react-router';
 import { IntlProvider } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { Router } from 'react-router';
@@ -52,13 +53,14 @@ const getTranslations = (lang: string, isMobileDevice: boolean) => {
 
 const RenderDeviceContainers = () => {
     const isMobileDevice = useSelector(selectMobileDeviceState);
+    const { pathname } = useLocation();
     if (!isMobileDevice) {
         return (
             <React.Fragment>
                 <HeaderContainer />
                 <AlertsContainer />
                 <LayoutContainer />
-                {location.pathname === '/' ? <FooterContainer /> : ''}
+                {pathname === '/' ? <FooterContainer /> : ''}
             </React.Fragment>
         );
     }
