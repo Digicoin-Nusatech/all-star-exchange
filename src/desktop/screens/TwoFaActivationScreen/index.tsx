@@ -51,7 +51,7 @@ export const TwoFaActivationScreen: React.FC = () => {
 
     return (
         <React.Fragment>
-            <section className="py-5">
+            <section className="py-5 two-fa-section">
                 <div className="container">
                     <div className="d-flex align-items-center mb-4">
                         <a href="#" className="text-dark fw-bold d-flex align-items-center">

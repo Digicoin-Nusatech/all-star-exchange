@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux';
 import { CodeVerification } from '../../components';
 import { signInRequire2FA } from '../../../modules';
 
+import patternDots from '../../../assets/img/pattern-dots.png';
+import heroSignin from '../../../assets/img/hero-sign-in.png';
+
 export interface TwoFactorAuthProps {
     isMobile?: boolean;
     isLoading?: boolean;
@@ -43,7 +46,58 @@ export const TwoFactorAuthComponent: React.FC<TwoFactorAuthProps> = ({
 
     return (
         <React.Fragment>
-            <form>
+            <section className="py-5 mt-5 two-fa-section">
+                <img src={patternDots} alt="#" className="left" />
+                <img src={patternDots} alt="#" className="right" />
+                <div className="container">
+                    <div className="card bg-light p-5 shadow-sm border-0">
+                        <div className="row align-items-center">
+                            <div className="col-lg-6">
+                                <div className="p-5">
+                                    <img src={heroSignin} alt="hero-images" className="w-100" />
+                                </div>
+                            </div>
+
+                            <div className="col-lg-6">
+                                <div className="card p-3 border-0">
+                                    <div className="mb-1">
+                                        <h2>2FA Verification</h2>
+                                        <p>Please enter 6 Digits authentication code from your App</p>
+                                    </div>
+                                    <form>
+                                        <CodeVerification
+                                            code={otpCode}
+                                            onChange={handleOtpCodeChange}
+                                            onSubmit={handleEnterPress}
+                                            codeLength={6}
+                                            type="number"
+                                            placeholder="Number Verification"
+                                            className="form-control"
+                                            inputMode="decimal"
+                                            showPaste2FA={true}
+                                            isMobile={isMobile}
+                                        />
+                                        <div className="d-grid gap-2">
+                                            <Button
+                                                className="btn-full mt-3"
+                                                disabled={isLoading || otpCode.length < 6}
+                                                onClick={onSubmit}
+                                                size="lg"
+                                                variant="primary">
+                                                {isLoading ? 'Loading...' : buttonLabel ? buttonLabel : 'Sign in'}
+                                            </Button>
+                                        </div>
+                                    </form>
+                                    {/* <div className="mt-4">{renderRegister}</div> */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* <form>
+                <h1>Testing</h1>
                 <CodeVerification
                     code={otpCode}
                     onChange={handleOtpCodeChange}
@@ -70,7 +124,7 @@ export const TwoFactorAuthComponent: React.FC<TwoFactorAuthProps> = ({
                     className="cursor-pointer btn btn-primary btn-outline btn-block">
                     <span className="gradient-text">+ Sign In With Another Account</span>
                 </button>
-            </div>
+            </div> */}
         </React.Fragment>
     );
 };

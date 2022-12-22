@@ -1,0 +1,33 @@
+.tab-pane {
+    display: flex;
+    flex-direction: column;
+    .menu-setting {
+        display: flex;
+    }
+
+    .menu-settings div {
+        color: #848484 !important;
+        padding-top: 25px;
+        padding-bottom: 20px;
+        padding: 15px;
+        border: 2px solid transparent;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .menu-settings {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        .active {
+            background-color: transparent !important;
+            color: #5b46f6 !important;
+            border-bottom: 2px solid var(--rgb-primary-color);
+            border-radius: 0px !important;
+            font-weight: 600;
+        }
+    }
+}

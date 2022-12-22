@@ -188,7 +188,7 @@ export const ProfileScreen: FC = (): ReactElement => {
     return (
         <React.Fragment>
             <div className="profile-screen">
-                <div className="content-wrapper dark-bg-accent pb-5">
+                <div className="content-wrapper container pb-5">
                     <ProfileAuthDetails />
 
                     <div className="profile-menu px-24">

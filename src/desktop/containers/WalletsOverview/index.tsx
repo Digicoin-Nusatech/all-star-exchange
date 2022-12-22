@@ -128,14 +128,14 @@ const WalletsOverview: FC<Props> = (props: Props): ReactElement => {
                           : Decimal.format(0, fixed);
 
                   return [
-                      <div key={index} className="d-flex">
+                      <div key={index} className="d-flex text-center ">
                           <img
                               alt={currency?.toUpperCase()}
                               src={iconUrl}
                               style={{ height: '24px', marginRight: '16px' }}
                           />
                           <p className="text-sm white-text">{currency.toUpperCase()}</p>
-                          <p className="ml-1 text-sm grey-text-accent">{name}</p>
+                          <p className="ml-1">{name}</p>
                       </div>,
                       <Decimal key={index} fixed={fixed} thousSep=",">
                           {totalBalance ? totalBalance.toString() : '0'}
@@ -147,16 +147,16 @@ const WalletsOverview: FC<Props> = (props: Props): ReactElement => {
                       <Decimal key={index} fixed={fixed} thousSep=",">
                           {spotLocked}
                       </Decimal>,
-                      <div key={index} className="ml-auto">
+                      <div key={index} className="float-right">
                           <button
                               onClick={() => handleClickDeposit(currency)}
-                              className="btn btn-outline-primary border-none blue-text">
+                              className="btn btn-outline-danger border-none blue-text">
                               {translate('page.body.wallets.overview.action.deposit')}
                           </button>
                           <button
                               onClick={() => handleClickWithdraw(currency)}
                               //   onClick={() => setShowModalLocked(!showModalLocked)}
-                              className="btn btn-primary border-none danger-text ml-3">
+                              className="btn btn-dark border-none danger-text ml-3">
                               {translate('page.body.wallets.overview.action.withdraw')}
                           </button>
                       </div>,

@@ -397,6 +397,7 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                 <input
                     className="checkbox__input mr-2"
                     type="checkbox"
+                    required
                     id="agreeWithTerms"
                     checked={hasConfirmed}
                     onChange={clickCheckBox}

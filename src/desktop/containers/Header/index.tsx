@@ -133,8 +133,8 @@ class Head extends React.Component<Props, HeaderState> {
 
         const ProfileDropdown = [
             {
-                name: 'Dashboard',
-                desc: 'Dashboard summary profile',
+                name: 'User Profile',
+                desc: 'Summary of Account Profile',
                 icon: <Dashboard />,
                 url: '/profile',
             },
@@ -370,33 +370,77 @@ class Head extends React.Component<Props, HeaderState> {
                                         </div>
                                         {showProfileDropdown ? (
                                             <div
-                                                className="dropdown-menu dark-bg-accent p-3 radius-sm"
+                                                className={`dropdown-menu  dropdown-menu-right ${
+                                                    showProfileDropdown && 'show'
+                                                }`}
                                                 aria-labelledby="navbarDropdownMenuLink">
-                                                {ProfileDropdown.map((item, index) => (
-                                                    <div
+                                                {/* <div
                                                         key={index}
-                                                        className="dropdown-wallets-item"
+                                                        className="dropdown-item"
                                                         onClick={() => this.setState({ showProfileDropdown: false })}>
-                                                        <Link to={item.url} className="d-flex">
-                                                            {item.icon}
-                                                            <div className="pl-3">
-                                                                <p className="mb-0 text-sm font-bold white-text">
-                                                                    {item.name}
-                                                                </p>
-                                                                <span className="text-xs grey-text-accent font-normal">
-                                                                    {item.desc}
-                                                                </span>
+                                                        <div className="dropdown-icon">{item.icon}</div>
+                                                        <Link
+                                                            to={item.url}
+                                                            className="dropdown-item d-flex align-items-center p-1">
+                                                            <div className="pl-1">
+                                                                <h6 className="mb-0">{item.name}</h6>
+                                                                <small>{item.desc}</small>
                                                             </div>
                                                         </Link>
+                                                    </div> */}
+                                                <Link
+                                                    onClick={() => this.setState({ showProfileDropdown: false })}
+                                                    className="dropdown-item d-flex align-items-center"
+                                                    to={'/profile'}>
+                                                    <img src={scanBlackIcon} alt="#" className="mr-2" />
+                                                    <div className="ml-3">
+                                                        <h6 className="text-dark mb-0">User Profile</h6>
+                                                        <small>Summary of Account Profile</small>
                                                     </div>
-                                                ))}
+                                                </Link>
+                                                <hr className="mx-3 my-2" />
+                                                <Link
+                                                    onClick={() => this.setState({ showProfileDropdown: false })}
+                                                    className="dropdown-item d-flex align-items-center"
+                                                    to={'/profile/security'}>
+                                                    <img src={securityBlackIcon} alt="#" className="mr-2" />
+                                                    <div className="ml-3">
+                                                        <h6 className="text-dark mb-0">Security Setting</h6>
+                                                        <small>Manage your security account</small>
+                                                    </div>
+                                                </Link>
+                                                <hr className="mx-3 my-2" />
+                                                <Link
+                                                    onClick={() => this.setState({ showProfileDropdown: false })}
+                                                    className="dropdown-item d-flex align-items-center"
+                                                    to={'/profile/kyc'}>
+                                                    <img src={usersIcon} alt="#" className="mr-2" />
+                                                    <div className="ml-3">
+                                                        <h6 className="text-dark mb-0">Profile Verification</h6>
+                                                        <small>Verify your identitiy</small>
+                                                    </div>
+                                                </Link>
+                                                <hr className="mx-3 my-2" />
+                                                <Link
+                                                    onClick={() => this.setState({ showProfileDropdown: false })}
+                                                    className="dropdown-item d-flex align-items-center"
+                                                    to={'/profile/referral'}>
+                                                    <img src={webBlackIcon} alt="#" className="mr-2" />
+                                                    <div className="ml-3">
+                                                        <h6 className="text-dark mb-0">Referral Code</h6>
+                                                        <small>Invite your friend</small>
+                                                    </div>
+                                                </Link>
+                                                <hr className="mx-3 my-2" />
                                                 <div
-                                                    className="dropdown-wallets-item cursor-pointer"
+                                                    className="cursor-pointer"
                                                     onClick={() => this.setState({ showProfileDropdown: false })}>
-                                                    <div className="d-flex" onClick={logoutButton}>
-                                                        <Logout />
-                                                        <div className="pl-3">
-                                                            <p className="mb-0 text-sm font-bold white-text">Logout</p>
+                                                    <div
+                                                        className="dropdown-item d-flex align-items-center"
+                                                        onClick={logoutButton}>
+                                                        <img src={logoutIcon} alt="#" />
+                                                        <div className="ml-3">
+                                                            <p className="mb-0 text-sm fw-bold white-text">Logout</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -405,70 +449,6 @@ class Head extends React.Component<Props, HeaderState> {
                                             ''
                                         )}
                                     </li>
-
-                                    {/* <div className="dropdown nav-link">
-                                        <a
-                                            className="align-items-center"
-                                            type="button"
-                                            data-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <img src={avatarIcon} alt="#" />
-                                            <img src={chevronDownIcon} alt="#" className="ml-2" />
-                                        </a>
-
-                                        <div className="dropdown-menu dropdown-menu-right py-3">
-                                            <a className="dropdown-item d-flex align-items-start active" href="#">
-                                                <img src={scanBlackIcon} alt="#" className="mr-2" />
-                                                <div className="ml-3">
-                                                    <h6 className="text-dark mb-0">User Profile</h6>
-                                                    <small>Summary of Account Profile</small>
-                                                </div>
-                                            </a>
-                                            <hr className="mx-3 my-2" />
-                                            <a className="dropdown-item d-flex align-items-start active" href="#">
-                                                <img src={securityBlackIcon} alt="#" className="mr-2" />
-                                                <div className="ml-3">
-                                                    <h6 className="mb-0">Security Setting</h6>
-                                                    <small>Manage your security account</small>
-                                                </div>
-                                            </a>
-                                            <hr className="mx-3 my-2" />
-                                            <a className="dropdown-item d-flex align-items-start active" href="#">
-                                                <img src={usersIcon} alt="#" className="mr-2" />
-                                                <div className="ml-3">
-                                                    <h6 className="mb-0">Profile Verification</h6>
-                                                    <small>Verify your identitiy</small>
-                                                </div>
-                                            </a>
-                                            <hr className="mx-3 my-2" />
-                                            <a className="dropdown-item d-flex align-items-start active" href="#">
-                                                <img src={webBlackIcon} alt="#" className="mr-2" />
-                                                <div className="ml-3">
-                                                    <h6 className="mb-0">API Management</h6>
-                                                    <small>Make transfers to other or other coins</small>
-                                                </div>
-                                            </a>
-                                            <hr className="mx-3 my-2" />
-                                            <a className="dropdown-item d-flex align-items-start active" href="#">
-                                                <img src={referralBlackIcon} alt="#" className="mr-2" />
-                                                <div className="ml-3">
-                                                    <h6 className="mb-0">Referral Code</h6>
-                                                    <small>Invite your friend</small>
-                                                </div>
-                                            </a>
-                                            <hr className="mx-3 my-2" />
-                                            <button
-                                                onClick={() => {
-                                                    this.props.logout();
-                                                }}
-                                                className="dropdown-item d-flex align-items-start active">
-                                                <img src={logoutIcon} alt="#" className="mr-2" />
-                                                <div className="ml-3">
-                                                    <h6 className="text-dark mb-0">Logout</h6>
-                                                </div>
-                                            </button>
-                                        </div>
-                                    </div> */}
                                 </>
 
                                 // Profile Dropdown

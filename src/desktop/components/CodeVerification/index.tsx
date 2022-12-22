@@ -11,10 +11,11 @@ export interface CodeVerificationProps {
     onSubmit?: (e: any) => void; // tslint:disable-line
     showPaste2FA?: boolean;
     isMobile?: boolean;
+    className?: string;
 }
 
 const CodeVerification: FC<CodeVerificationProps> = (props: CodeVerificationProps): ReactElement => {
-    const { code, codeLength, inputMode, isMobile, onSubmit, placeholder, showPaste2FA, type } = props;
+    const { code, codeLength, inputMode, isMobile, onSubmit, placeholder, showPaste2FA, type, className } = props;
 
     const onCodeChange = (e) => {
         if (e.target.value.length <= codeLength && (e.target.value.match(/^[0-9\b]+$/) || e.target.value === '')) {
@@ -37,7 +38,7 @@ const CodeVerification: FC<CodeVerificationProps> = (props: CodeVerificationProp
     return (
         <div className="custom-input mb-8">
             <input
-                className="form-control text-center spacing-10"
+                className={className}
                 autoFocus={true}
                 type={type}
                 value={code}
@@ -46,11 +47,11 @@ const CodeVerification: FC<CodeVerificationProps> = (props: CodeVerificationProp
                 onKeyPress={onSubmit}
                 placeholder={placeholder}
             />
-            {showPaste2FA && (
+            {/* {showPaste2FA && (
                 <div className="cursor-pointer grey-text text-sm mt-1" onClick={() => paste2FA()}>
                     Paste 2FA
                 </div>
-            )}
+            )} */}
         </div>
     );
 };
