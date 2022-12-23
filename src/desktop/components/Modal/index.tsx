@@ -42,8 +42,8 @@ export const Modal: React.FunctionComponent<ModalProps> = (props) => {
             <div className={`custom-modal fade ${wideView ? 'wide-modal' : ''}`}>
                 <div className="custom-modal-dialog" role="document">
                     <div className="custom-modal-content">
-                        <div className="header d-flex justify-content-between mb-24">{props.header}</div>
-                        <div className="body mb-24">{props.content}</div>
+                        <div className="header d-flex justify-content-between">{props.header}</div>
+                        <div className="body">{props.content}</div>
                         {footer ? <div className="footer">{props.footer}</div> : ''}
                     </div>
                 </div>

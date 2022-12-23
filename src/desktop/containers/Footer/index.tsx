@@ -54,14 +54,14 @@ class FooterContainer extends React.Component<Props, State> {
             <footer className="py-5">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-3 mb-4 mb-lg-0 fw-bold">
+                        <div className="col-lg-3 mb-4 mb-lg-0 font-bold">
                             <div className="logo mb-3">
                                 <Logo />
                             </div>
                             Through many of its unique properties, Bitcoin allows exciting uses that could not be
                             covered by any previous payment system.
                         </div>
-                        <div className="col-lg-2 mb-4 mb-lg-0 fw-bold">
+                        <div className="col-lg-2 mb-4 mb-lg-0 font-bold">
                             <h4 className="text-primary text-uppercase mb-3">Links</h4>
                             <div className="mb-2">
                                 <a href="#">How it works</a>
@@ -79,7 +79,7 @@ class FooterContainer extends React.Component<Props, State> {
                                 <a href="#">Blogs</a>
                             </div>
                         </div>
-                        <div className="col-lg-3 mb-4 mb-lg-0 fw-bold">
+                        <div className="col-lg-3 mb-4 mb-lg-0 font-bold">
                             <h4 className="text-primary text-uppercase mb-3">Legal</h4>
                             <div className="mb-2">
                                 <a href="#">Terms of use</a>
@@ -104,7 +104,7 @@ class FooterContainer extends React.Component<Props, State> {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-4 mt-4 text-center text-lg-left fw-bold">
+                        <div className="col-lg-4 mt-4 text-center text-lg-left font-bold">
                             <a href="#" className="mr-3 text-dark">
                                 Privacy & Terms
                             </a>

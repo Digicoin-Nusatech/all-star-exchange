@@ -91,7 +91,7 @@ const CardTrendingCoin = ({ icon, code, name, chart }: CardTrendingProps) => {
                     <hr />
                     <div className="row align-items-center">
                         <div className="col-7">
-                            <h5 className="fw-bold">$56,623.54</h5>
+                            <h5 className="font-bold">$56,623.54</h5>
                             <span className="text-success">1.41%</span>
                         </div>
                         <div className="col-5 text-right">
@@ -141,8 +141,8 @@ class Landing extends React.Component<Props> {
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-lg-6 text-center text-lg-left">
-                                <div className="text-warning fw-bold mb-4">Join the our crypto exchange</div>
-                                <h1 className="fw-bold mb-4">Popular way to buy and sell crypto.</h1>
+                                <div className="text-warning font-bold mb-4">Join the our crypto exchange</div>
+                                <h1 className="font-bold mb-4">Popular way to buy and sell crypto.</h1>
                                 <p>
                                     Besnik crypto is the community-run technology powering the cryptocurrency, ether and
                                     thousands of decentralized applications.
@@ -196,11 +196,11 @@ class Landing extends React.Component<Props> {
                     <img src={pattern3} alt="#" className="pattern-3" />
                     <img src={pattern4} alt="#" className="pattern-4" />
                     <div className="container">
-                        <div className="text-center fw-bold">
-                            <h1 className="fw-bold mb-4">Popular Crypto Coins</h1>
-                            <h5 className="fw-bold">Most popular coins to trade</h5>
+                        <div className="text-center font-bold">
+                            <h1 className="font-bold mb-4">Popular Crypto Coins</h1>
+                            <h5 className="font-bold">Most popular coins to trade</h5>
                         </div>
-                        <div className="row my-4 fw-bold no-gutters">
+                        <div className="row my-4 font-bold no-gutters">
                             <div className="col-8">
                                 <a href="#" className="text-dark h6 mb-0 mr-3">
                                     Hot List
@@ -218,7 +218,7 @@ class Landing extends React.Component<Props> {
                                 </a>
                             </div>
                         </div>
-                        <div className="row text-dark fw-bold">
+                        <div className="row text-dark font-bold">
                             <div className="col-lg-4 col-6">Coins</div>
                             <div className="col-lg-2 col-6 text-right text-lg-left">Last Price</div>
                             <div className="col-lg-2 d-none d-lg-block">24h Change</div>
@@ -426,8 +426,8 @@ class Landing extends React.Component<Props> {
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-lg-6">
-                                <div className="text-warning fw-bold mb-4">YOUR GATEWAY TO THE GLOBAL ECONOMY</div>
-                                <h1 className="fw-bold mb-4">The Easiest and Most Powerful Crypto Wallet</h1>
+                                <div className="text-warning font-bold mb-4">YOUR GATEWAY TO THE GLOBAL ECONOMY</div>
+                                <h1 className="font-bold mb-4">The Easiest and Most Powerful Crypto Wallet</h1>
                                 <p>
                                     Bitcoin uses peer-to-peer technology to operate with no central authority or banks;
                                     managing transactions and the issuing of bitcoins is carried out collectively by the
@@ -452,8 +452,8 @@ class Landing extends React.Component<Props> {
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-lg-6 text-center">
-                                <div className="text-warning fw-bold mb-4">GATEWAY TO THE GLOBAL ECONOMY</div>
-                                <h1 className="fw-bold mb-4">Cryptocurrency in Every Wallet™</h1>
+                                <div className="text-warning font-bold mb-4">GATEWAY TO THE GLOBAL ECONOMY</div>
+                                <h1 className="font-bold mb-4">Cryptocurrency in Every Wallet™</h1>
                             </div>
                         </div>
                         <div className="row">
@@ -496,7 +496,7 @@ class Landing extends React.Component<Props> {
                                 <img src={HeroSection2} alt="#" className="w-100" />
                             </div>
                             <div className="col-lg-6">
-                                <h1 className="fw-bold mb-4">Trade Anytime, Anywhere</h1>
+                                <h1 className="font-bold mb-4">Trade Anytime, Anywhere</h1>
                                 <p>Compatible with multiple devices, start trading with safety and convenience.</p>
                                 <div>
                                     <a href="#" className="btn btn-primary">

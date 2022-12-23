@@ -164,8 +164,8 @@ export const Table: React.FC<TableProps> = (props: TableProps) => {
     const renderHead = React.useCallback((row: CellData[]) => {
         const cells = row.map((c, index) => (c ? <th key={index}>{c}</th> : <th key={index}>&nbsp;</th>));
         return (
-            <thead className={'cr-table__head'}>
-                <tr className={'cr-table__head-row'}>{cells}</tr>
+            <thead className={'cr-table__head rounded-lg'}>
+                <tr className={'cr-table__head-row rounded-lg'}>{cells}</tr>
             </thead>
         );
     }, []);

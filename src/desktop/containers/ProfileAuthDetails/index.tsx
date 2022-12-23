@@ -76,11 +76,11 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
 
         return (
             <React.Fragment>
-                <div className="profile-detail px-24 py-4 dark-bg-main mb-24">
+                <div className="profile-detail-info py-2">
                     <div className="d-flex align-items-center">
-                        <img src={Avatar} className="img-profile-detail mr-3" alt="profile avatar detail" />
+                        <img src={Avatar} className="mr-4" alt="profile avatar detail" />
                         <div className="details">
-                            <div className="d-flex align-items-center mb-2">
+                            <div className="d-flex align-items-center mb-1">
                                 <h6 className="white-text font-bold text-ms mb-0 mr-3">
                                     {isUsernameEnabled() ? <h2>{user.username}</h2> : null}
                                 </h6>
@@ -95,23 +95,43 @@ class ProfileAuthDetailsComponent extends React.Component<Props, State> {
                                 )}
                             </div>
                             <div className="d-flex">
-                                <div className="mr-3">
-                                    <span className="text-xs grey-text font-normal ">User ID</span>
-                                    <p className="text-xs white-text font-bold mb-0">{user.uid}</p>
+                                <div className="form-inline">
+                                    <span className="text-xs font-normal ">User ID : </span>
+                                    <p className="text-xs ml-2 text-dark font-bold mb-0"> {user.uid}</p>
                                 </div>
-                                <div className="mr-3">
-                                    <span className="text-xs grey-text font-normal ">
-                                        Last Login
-                                        <ArrowDownIcon strokeColor={''} className={'rotate-90 arrow-profile'} />
-                                    </span>
-                                    <p className="text-xs white-text font-bold mb-0">{user.updated_at} </p>
+                                <div className="ml-3 form-inline">
+                                    <span className="text-xs font-normal ">Last Login : </span>
+                                    <p className="text-xs ml-2 text-dark font-bold mb-0">{user.updated_at} </p>
                                 </div>
-                                <div className="mr-3">
-                                    <span className="text-xs grey-text font-normal ">
-                                        Email
-                                        <ArrowDownIcon strokeColor={''} className={'rotate-90 arrow-profile'} />
-                                    </span>
-                                    <p className="text-xs white-text font-bold mb-0">{user.email}</p>
+                                <div className="ml-3 form-inline">
+                                    <span className="text-xs font-normal ">Email : </span>
+                                    <p className="text-xs ml-2 text-dark font-bold mb-0">{user.email}</p>
+                                </div>
+                            </div>
+                            <div className="security-level mt-4">
+                                <h6 className="font-bold">Security Level</h6>
+                                <div className="mt-1 bar-container">
+                                    <div
+                                        className={`bar-level ${
+                                            user.level == 1
+                                                ? 'level-danger'
+                                                : user.level == 2
+                                                ? 'level-warning'
+                                                : user.level == 3
+                                                ? 'level-success'
+                                                : 'default'
+                                        }`}></div>
+                                    <div
+                                        className={`bar-level ${
+                                            user.level == 1
+                                                ? 'default'
+                                                : user.level == 2
+                                                ? 'level-warning'
+                                                : user.level == 3
+                                                ? 'level-success'
+                                                : 'default'
+                                        }`}></div>
+                                    <div className={`bar-level ${user.level == 3 ? 'level-success' : 'default'}`}></div>
                                 </div>
                             </div>
                         </div>

@@ -440,7 +440,7 @@ class Head extends React.Component<Props, HeaderState> {
                                                         onClick={logoutButton}>
                                                         <img src={logoutIcon} alt="#" />
                                                         <div className="ml-3">
-                                                            <p className="mb-0 text-sm fw-bold white-text">Logout</p>
+                                                            <p className="mb-0 text-sm font-bold white-text">Logout</p>
                                                         </div>
                                                     </div>
                                                 </div>

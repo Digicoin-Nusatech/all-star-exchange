@@ -54,17 +54,17 @@ export const TwoFaActivationScreen: React.FC = () => {
             <section className="py-5 two-fa-section">
                 <div className="container">
                     <div className="d-flex align-items-center mb-4">
-                        <a href="#" className="text-dark fw-bold d-flex align-items-center">
+                        <a href="#" className="text-dark font-bold d-flex align-items-center">
                             Back to Home
                         </a>
                         <span className="mx-2 fs-lg">|</span>Activate 2FA
                     </div>
-                    <h4 className="fw-bold mb-4">Security Google 2FA Verification</h4>
+                    <h4 className="font-bold mb-4">Security Google 2FA Verification</h4>
                     <ol className="pl-3">
                         <li>
                             Download and install Google Authenticator application from{' '}
-                            <span className="text-primary fw-bold">AppStore</span> or{' '}
-                            <span className="text-primary fw-bold">Google play</span>
+                            <span className="text-primary font-bold">AppStore</span> or{' '}
+                            <span className="text-primary font-bold">Google play</span>
                         </li>
                         <li>
                             Scan QR code or use secret MFA code:* Save this secret in a secure location. This code can
@@ -74,12 +74,12 @@ export const TwoFaActivationScreen: React.FC = () => {
                     <div className="row ">
                         <div className="col-lg-7">
                             <form>
-                                <div className="text-dark fw-bold">
+                                <div className="text-dark font-bold">
                                     Scan The QR Code to get 2FA or Copy Keys below :
                                 </div>
                                 <div className="row align-items-center no-gutters mt-4">
                                     {/* <div className="col">
-                                        <label className="text-dark fw-bold mb-0">MVA CODE</label>
+                                        <label className="text-dark font-bold mb-0">MVA CODE</label>
                                     </div>
                                     <div className="col-10">
                                         <div className="card b-form px-3 py-2 rounded-lg">
@@ -96,7 +96,7 @@ export const TwoFaActivationScreen: React.FC = () => {
                                     </div> */}
 
                                     <div className="col-3">
-                                        <label className="text-dark fw-bold mb-0">MVA CODE</label>
+                                        <label className="text-dark font-bold mb-0">MVA CODE</label>
                                     </div>
                                     <div className="col-9">
                                         {secret && (
@@ -112,7 +112,7 @@ export const TwoFaActivationScreen: React.FC = () => {
                                 </div>
                                 {/* <div className="input-2fa">
                                     <div className="col-3 bg-warning">
-                                        <label className="text-dark fw-bold mb-0">2FA Code</label>
+                                        <label className="text-dark font-bold mb-0">2FA Code</label>
                                     </div>
                                     <div className="col-9">
                                         <form onSubmit={handleTwoFactorAuth}>
@@ -134,7 +134,7 @@ export const TwoFaActivationScreen: React.FC = () => {
 
                                 <div className="row align-items-start no-gutters mt-4">
                                     <div className="col-3">
-                                        <label className="text-dark fw-bold mt-1">2FA CODE</label>
+                                        <label className="text-dark font-bold mt-1">2FA CODE</label>
                                     </div>
                                     <div className="col-9 form-code">
                                         <CustomInput

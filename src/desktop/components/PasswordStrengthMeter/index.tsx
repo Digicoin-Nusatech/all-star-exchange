@@ -59,7 +59,7 @@ const renderPasswordStrengthTip = (props: PasswordStrengthMeterProps, passwordSt
                         passwordStrengthMeterLength
                     )}`}>
                     <p className="text-dark mb-0 mr-1">{props.translate('page.header.signUp.strength.password')}: </p>
-                    <p className="fw-bold m-0">
+                    <p className="font-bold m-0">
                         {passwordStrengthStatus(passwordStrengthMeterLength, props.translate)}
                     </p>
                 </div>

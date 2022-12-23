@@ -406,15 +406,15 @@ const SignUpFormComponent: React.FC<SignUpFormProps> = ({
                     <span className="checkbox__tick" />
                     <span className="checkbox__text">
                         By signing up I agree that I'm 18 years of age or older, to the{' '}
-                        <a className="checkbox__link fw-bold text-dark" href="#">
+                        <a className="checkbox__link font-bold text-dark" href="#">
                             User Agreements
                         </a>{' '}
                         ,{' '}
-                        <a className="checkbox__link fw-bold text-dark" href="#">
+                        <a className="checkbox__link font-bold text-dark" href="#">
                             Privacy Policy
                         </a>{' '}
                         ,{' '}
-                        <a className="checkbox__link fw-bold text-dark" href="#">
+                        <a className="checkbox__link font-bold text-dark" href="#">
                             Cookie Policy
                         </a>
                     </span>

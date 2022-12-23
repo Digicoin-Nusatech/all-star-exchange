@@ -164,7 +164,9 @@ class ProfileSecurityComponent extends React.Component<Props, ProfileSecuritySta
                         <div className="d-flex mb-24">
                             <div className="status d-flex align-items-center">
                                 {twoFaStatus ? <CheckIcon /> : ''}
-                                <p className="mb-0 white-text text-sm ml-3">Two-Factor Authentication (2FA)</p>
+                                <p className="mb-0 white-text text-sm ml-3">
+                                    Two-Factor Authentication Testing Page (2FA)
+                                </p>
                             </div>
                             <div className="status d-flex align-items-center ml-4">
                                 <CheckIcon />
